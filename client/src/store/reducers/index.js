@@ -37,6 +37,26 @@ export const reducer = (state = initialState, action) => {
                 isRegistering: false,
                 error: action.payload
             };
+        case LOGIN_START:
+            return {
+                ...state,
+                isLoggingIn: true,
+                error: null
+            }
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                isLoggingIn: false,
+                isLoggedIn: true,
+                error: null,
+            }
+        case LOGIN_FAILURE:
+            return {
+                ...state,
+                isLoggingIn: false,
+                error: action.payload
+            }
+
         default: 
             return state
     }

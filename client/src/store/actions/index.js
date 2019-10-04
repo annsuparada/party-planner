@@ -31,5 +31,19 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const login = (history, credentials) => dispatch => {
     dispatch({ type: LOGIN_START });
     return axios
+        .post("https://mypartyplanner.herokuapp.com/api/auth/login", credentials)
+        .then(response => {
+            console.log("login ssuccess", response)
+            dispatch({ type: LOGIN_SUCCESS })
+            localStorage.setItem("token", response.data.token)
+            history.push("/categories")
+        })
+        .catch(error => {
+            console.log("login error", error)
+            dispatch({
+                type: LOGIN_FAILURE,
+                payload: "Plese provide correct username and password"
+            })
+        })
 
 }
