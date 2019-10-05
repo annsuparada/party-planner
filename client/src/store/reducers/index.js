@@ -5,15 +5,19 @@ import {
     LOGIN_START,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
+    FETCH_CATEGORIES_START,
+    FETCH_CATEGORIES_SUCCESS,
+    FETCH_CATEGORIES_FAILURE,
 } from '../actions/index';
 
 
 export const initialState = {
-    isRegistering: false,
+    isLoading: false,
     isRegisted: false,
-    isLoggingIn: false,
     isLoggedIn: false,
-    error: []
+    error: [],
+    categories: [],
+    isFetching: false,
 }
 
 export const reducer = (state = initialState, action) => {
@@ -21,32 +25,32 @@ export const reducer = (state = initialState, action) => {
         case REGISTER_START:
             return {
                 ...state,
-                isRegistering: true,
+                isLoading: true,
                 error: null
             }
         case REGISTER_SUCCESS:
             return {
                 ...state,
-                isRegistering: false,
+                isLoading: false,
                 isRegisted: true,
                 error: null
             }
         case REGISTER_FAILURE:
             return {
                 ...state,
-                isRegistering: false,
+                isLoading: false,
                 error: action.payload
             };
         case LOGIN_START:
             return {
                 ...state,
-                isLoggingIn: true,
+                isLoading: true,
                 error: null
             }
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                isLoggingIn: false,
+                isLoading: false,
                 isLoggedIn: true,
                 error: null,
             }
@@ -56,7 +60,25 @@ export const reducer = (state = initialState, action) => {
                 isLoggingIn: false,
                 error: action.payload
             }
-
+        case FETCH_CATEGORIES_START:
+            return {
+                ...state,
+                isFetching: true,
+                error: null
+            }
+        case FETCH_CATEGORIES_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                categories: action.payload,
+                error: null
+            }
+        case FETCH_CATEGORIES_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: action.payload
+            }
         default: 
             return state
     }

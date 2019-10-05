@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { login } from "../store/actions/index";
+import Loader from 'react-loader-spinner'
 
 const LoginForm = props => {
     const [input, setInput] = useState({
@@ -39,7 +40,17 @@ const LoginForm = props => {
                  value={input.password}
                  onChange={inputHandler} 
             />
-            <button>Submit</button>
+            <button>
+                {props.isLoading ? (
+                    <Loader
+                        type="TailSpin"
+                        color="#00BFFF"
+                        height={100}
+                        width={100}
+                /> ):(
+                'Submit'
+                )}
+            </button>
         </form>
         {props.error && <p>{props.error}</p>}
         </>
@@ -47,7 +58,7 @@ const LoginForm = props => {
 }
 
 const mapStateToProps = state => ({
-    isLoggingIn: state.isLoggingIn,
+    isLoading: state.isLoading,
     isLoggedIn: state.isLoggedIn,
     error: state.error
 })

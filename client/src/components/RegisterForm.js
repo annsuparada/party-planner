@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { register } from "../store/actions/index";
+import Loader from 'react-loader-spinner'
 
 const RegisterForm = props => {
     const [newUser, setNewUser] = useState({
@@ -82,7 +83,7 @@ const RegisterForm = props => {
             {userNameErrors.length > 0 && (
                 <p>{userNameErrors}</p>
             )}
-            {props.error && <p>{props.error}</p>}
+            
             <input 
                 placeholder="Password"
                 type="password"
@@ -90,17 +91,28 @@ const RegisterForm = props => {
                 value={newUser.password}
                 onChange={handleInputChange} 
             />
-              {passwordErrors.length > 0 && (
+            <button>
+              {props.isLoading ? (
+                  <Loader
+                      type="TailSpin"
+                      color="#00BFFF"
+                      height={100}
+                      width={100}
+              /> ):(
+              'Submit'
+              )}
+            </button>
+        </form>
+        {props.error && <p>{props.error}</p>}
+        {passwordErrors.length > 0 && (
                 <p>{passwordErrors}</p>
             )}
-            <button>Submit</button>
-        </form>
         </>
     )
 }
 
 const mapStateToProps = state => ({
-    isRegistering: state.isRegistering,
+    isLoading: state.isLoading,
     error: state.error
   });
   export default withRouter(
