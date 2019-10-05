@@ -8,6 +8,10 @@ import {
     FETCH_CATEGORIES_START,
     FETCH_CATEGORIES_SUCCESS,
     FETCH_CATEGORIES_FAILURE,
+    FETCH_PARTY_START,
+    FETCH_PARTY_SUCCESS,
+    FETCH_PARTY_FAILURE,
+
 } from '../actions/index';
 
 
@@ -18,6 +22,7 @@ export const initialState = {
     error: [],
     categories: [],
     isFetching: false,
+    parties: []
 }
 
 export const reducer = (state = initialState, action) => {
@@ -77,6 +82,25 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: false,
+                error: action.payload
+            }
+        case FETCH_PARTY_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: null
+            }
+        case FETCH_PARTY_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                parties: action.payload,
+                error: null
+            }
+        case FETCH_PARTY_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
                 error: action.payload
             }
         default: 

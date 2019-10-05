@@ -73,3 +73,33 @@ export const getCategories = () => dispatch => {
         })
 
 }
+
+export const FETCH_PARTY_START = "FETCH_PARTY_START"
+export const FETCH_PARTY_SUCCESS = "FETCH_PARTY_SUCCESS"
+export const FETCH_PARTY_FAILURE = "FETCH_PARTY_FAILURE"
+
+export const getPartyByCategory = (history) => dispatch => {
+    dispatch({ type: FETCH_CATEGORIES_START })
+        return axiosWithAuth()
+            .get("https://mypartyplanner.herokuapp.com/api/parties")
+            .then(response => {
+                console.log("party by cat", response)
+                // let newPartyList =  response.data.filter(item => {
+                //     if (item.category_id == ?) {
+                //         return item;
+                //     }
+                // })
+                dispatch({ 
+                    type: FETCH_PARTY_SUCCESS,
+                    payload: response.data
+                })
+                history.push("/parties")
+            })
+            .catch(error => {
+                console.log("party error", error)
+                dispatch({ 
+                    type: FETCH_PARTY_FAILURE,
+                    payload: "error"
+                })
+            })
+}

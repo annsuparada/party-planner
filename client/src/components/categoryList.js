@@ -9,6 +9,9 @@ import Category from './categotory'
 const CategoryList = props => {
     useEffect(() => {
         props.getCategories()
+
+       
+
     },[])
 
     return (
