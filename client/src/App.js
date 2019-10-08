@@ -5,7 +5,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Home from './pages/Home'
 import CategoreyPage from './pages/CategoreyPage'
-import Parties from './pages/Parties';
+import Parties from './components/Parties';
 
 import './App.css';
 
@@ -16,7 +16,7 @@ function App() {
       <Route path="/login" component={LoginPage} />
       <Route path="/register" component={RegisterPage} />
       <PrivateRoute path="/categories" component={CategoreyPage} />
-      <Route path="/parties" component={CategoreyPage} />
+      <Route path="/parties" component={Parties} />
     </div>
   );
 }

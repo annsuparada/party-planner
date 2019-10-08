@@ -58,7 +58,7 @@ export const getCategories = () => dispatch => {
      return axiosWithAuth()
         .get("https://mypartyplanner.herokuapp.com/api/categories")
         .then(response => {
-            console.log('getCat', response)
+            // console.log('getCat', response)
             dispatch({ 
                 type: FETCH_CATEGORIES_SUCCESS,
                 payload: response.data
@@ -93,7 +93,7 @@ export const getPartyByCategory = (history) => dispatch => {
                     type: FETCH_PARTY_SUCCESS,
                     payload: response.data
                 })
-                history.push("/parties")
+                // history.push("/parties")
             })
             .catch(error => {
                 console.log("party error", error)
