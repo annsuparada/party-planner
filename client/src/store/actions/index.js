@@ -84,11 +84,6 @@ export const getPartyByCategory = (history) => dispatch => {
             .get("https://mypartyplanner.herokuapp.com/api/parties")
             .then(response => {
                 console.log("party by cat", response)
-                // let newPartyList =  response.data.filter(item => {
-                //     if (item.category_id == ?) {
-                //         return item;
-                //     }
-                // })
                 dispatch({ 
                     type: FETCH_PARTY_SUCCESS,
                     payload: response.data

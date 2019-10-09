@@ -36,9 +36,6 @@ const Category = props => {
         {props.parties && props.parties.map(item => 
             <Parties key={item.id} partyList={item}/>
         )}
-           
-        
-        {/* <button onClick={getPartyByCategory}>{props.list.category}</button> */}
        </>
         )
 }
