@@ -58,9 +58,9 @@ const LoginForm = props => {
 }
 
 const mapStateToProps = state => ({
-    isLoading: state.isLoading,
-    isLoggedIn: state.isLoggedIn,
-    error: state.error
+    isLoading: state.credentialReducer.isLoading,
+    isLoggedIn: state.credentialReducer.isLoggedIn,
+    error: state.credentialReducer.error
 })
 
 export default withRouter(

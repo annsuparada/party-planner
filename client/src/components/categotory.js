@@ -1,26 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getPartyByCategory } from "../store/actions/index";
+import { getPartyByCategory, getCategories } from "../store/actions/index";
 import Parties from "./Parties";
 import Loader from 'react-loader-spinner';
 
 const Category = props => {
 
-    // let newPartyList =  response.data.filter(item => {
-    //                 if (item.category_id == ?) {
-    //                     return item;
-    //                 }
-    //             })
-
-    // props.list.id === props.partyList.category_id
-    useEffect(() => {
-        
-    })
+    const getParties = (event) => {
+        const id = props.categoryId
+        console.log('id',id)
+        props.getPartyByCategory(id)
+        props.history.push(`/categories/${id}/party`)
+    }
 
     return (
         <>
-        <button className="btn" onClick={props.getPartyByCategory}>
+        <button className="btn" onClick={getParties}>
             {props.isLoading ? (
                 <Loader
                     type="TailSpin"
@@ -32,23 +28,18 @@ const Category = props => {
             )}
             
         </button>
-        {props.error && <p className="error">{props.error}</p>}
-        {props.parties && props.parties.map(item => 
+        {/* {props.error && <p className="error">{props.error}</p>} */}
+        {/* {props.parties && props.parties.map(item => 
             <Parties key={item.id} partyList={item}/>
-        )}
+        )} */}
        </>
         )
 }
 
-const mapStateToProps = state => ({
-    isLoading: state.isLoading,
-    parties: state.parties,
-    error: state.error
-})
 
 export default withRouter(
     connect(
-      mapStateToProps,
-      { getPartyByCategory }
+      null,
+      { getPartyByCategory, getCategories }
     )(Category)
   )

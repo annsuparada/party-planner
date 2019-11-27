@@ -112,8 +112,8 @@ const RegisterForm = props => {
 }
 
 const mapStateToProps = state => ({
-    isLoading: state.isLoading,
-    error: state.error
+    isLoading: state.credentialReducer.isLoading,
+    error: state.credentialReducer.error
   });
   export default withRouter(
     connect(

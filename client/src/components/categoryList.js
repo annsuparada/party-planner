@@ -9,9 +9,6 @@ import Category from './categotory'
 const CategoryList = props => {
     useEffect(() => {
         props.getCategories()
-
-       
-
     },[])
 
     return (
@@ -19,7 +16,7 @@ const CategoryList = props => {
         <h2>CategoryList</h2>
         
         {props.categories && props.categories.map(item => (
-            <Category key={item.id} list={item}  />
+            <Category key={item.id} list={item}  categoryId={item.id}/>
         ))}
         
         </>
@@ -27,9 +24,9 @@ const CategoryList = props => {
 }
 
 const mapStateToProps = state => ({
-    isLoading: state.isLoading,
-    categories: state.categories,
-    error: state.error
+    isLoading: state.categoryReducer.isLoading,
+    categories: state.categoryReducer.categories,
+    error: state.categoryReducer.error
 })
 
 export default withRouter(
