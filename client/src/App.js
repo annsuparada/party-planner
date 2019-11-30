@@ -5,7 +5,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Home from './pages/Home'
 import CategoreyPage from './pages/CategoreyPage'
-import Parties from './components/Parties';
+import Parties from './components/party/Parties';
 
 import './App.css';
 

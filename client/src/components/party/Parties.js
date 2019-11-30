@@ -1,26 +1,36 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import {getPartyByCategory} from '../store/actions';
-
+import {getPartyByCategory} from '../../store/actions';
+import PartyForm from './PartiesForm';
 
 const Parties = props => {
-  console.log('props', props)
+  const [form, setForm] = useState(false)
   const categoryId = props.match.params.id;
+
   useEffect(()=>{
       props.getPartyByCategory(categoryId);
     }, [])
-    // TODO fetch parties in this category
+    const handleAddButton = () => {
+      setForm(!form);
+    }
+    const handleCancelForm = () => {
+      setForm(false)
+    }
     return (
         <>
+          <Link to="/categories" refresh="true">Back</Link>
           <p>Party Category: {categoryId}</p>
           {props.error && <p>{props.error}</p>}
-          {props.parties && props.parties.map(item => (
+          <button onClick={handleAddButton}>Add party</button>
+          { form ? (
+            <PartyForm categoryId={categoryId} handleCancelForm={handleCancelForm} setForm={setForm}/>
+          ) : null}
+          {props.parties && props.parties.map(item => ( 
             <p>{item.party_name}</p>
 
           ))}
-          <Link to="/categories">Back</Link>
         </>
     )
 }

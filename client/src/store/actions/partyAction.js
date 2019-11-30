@@ -7,7 +7,8 @@ export const FETCH_PARTY_FAILURE = "FETCH_PARTY_FAILURE"
 export const getPartyByCategory = (id) => dispatch => {
     dispatch({ type: FETCH_PARTY_START })
         return axiosWithAuth()
-            .get(`http://localhost:8000/api/categories/${id}/party`)
+            .get(`https://mypartyplanner.herokuapp.com/api/categories/${id}/party`)
+            // .get(`http://localhost:8000/api/categories/${id}/party`)
             .then(response => {
                 console.log("party by cat", response)
                 dispatch({ 
@@ -25,13 +26,26 @@ export const getPartyByCategory = (id) => dispatch => {
             })   
 }
 
-export const getPartiesByCategoryId = (categoryId) => {
+
+
+export const ADD_PARTY_START = "ADD_PARTY_START"
+export const ADD_PARTY_SUCCESS = "ADD_PARTY_SUCCESS"
+export const ADD_PARTY_FAILURE = "ADD_PARTY_FAILURE"
+
+export const addParty = state => dispatch => {
+    dispatch({ type: ADD_PARTY_START })
     return axiosWithAuth()
-        .get(`http://localhost:8000/api/categories/${categoryId}/party`)
+        .post("https://mypartyplanner.herokuapp.com/api/parties", state)
         .then(response => {
-            return response.body
+            dispatch({
+                type: ADD_PARTY_SUCCESS,
+                payload: response.data
+            })
         })
-        .catch(error => error);
-} 
-
-
+        .catch(error => {
+            dispatch({
+            type: ADD_PARTY_FAILURE,
+            payload: error
+            })
+        })
+}

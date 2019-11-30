@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter } from "react-router-dom";
 import { reducer } from "./store/reducers/index";
-
+import 'antd/dist/antd.css';
 import './index.css';
 import App from './App';
 
