@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CategoryList from '../components/categoryList'
+import CategoryList from '../components/category/categoryList'
 
 const CategoryPage = () => {
 

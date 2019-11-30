@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCategories } from "../store/actions/index";
+import { getCategories } from "../../store/actions";
 
 import Category from './categotory'
 

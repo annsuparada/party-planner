@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getPartyByCategory, getCategories } from "../store/actions/index";
-import Parties from "./party/Parties";
+import { getPartyByCategory, getCategories } from "../../store/actions";
 import Loader from 'react-loader-spinner';
 
 const Category = props => {
