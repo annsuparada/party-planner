@@ -55,16 +55,15 @@ export const addParty = state => dispatch => {
 export const FETCH_PARTYBYID_START = "FETCH_PARTYBYID_START"
 export const FETCH_PARTYBYID_SUCCESS = "FETCH_PARTYBYID_SUCCESS"
 export const FETCH_TODO_SUCCESS = "FETCH_TODO_SUCCESS"
+export const FETCH_ITEM_SUCCESS = "FETCH_ITEM_SUCCESS"
 export const FETCH_PARTYBYID_FAILURE = "FETCH_PARTYBYID_FAILURE"
 
 export const getPartyById = (id) => dispatch => {
-    console.log('action id', id)
     dispatch({ type: FETCH_PARTYBYID_START })
         return axiosWithAuth()
             // .get(`https://mypartyplanner.herokuapp.com/api/parties/${id} `)
             .get(`http://localhost:8000/api/parties/${id} `)
             .then(response => {
-                console.log("party by id", response)
                 dispatch({ 
                     type: FETCH_PARTYBYID_SUCCESS,
                     payload: response.data
@@ -72,6 +71,10 @@ export const getPartyById = (id) => dispatch => {
                 dispatch({
                     type: FETCH_TODO_SUCCESS,
                     payload: response.data.todo_list
+                })
+                dispatch({
+                    type: FETCH_ITEM_SUCCESS,
+                    payload: response.data.shopping_list
                 })
                 
             })

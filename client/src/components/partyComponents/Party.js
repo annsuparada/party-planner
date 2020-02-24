@@ -1,29 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getParties, getPartyById, addTodo } from '../../store/actions';
+import { getParties, getPartyById} from '../../store/actions';
 import TodoForm from '../todoComponents/TodoForm';
+import ShoppingListForm from '../shoppingListComponents/ShoppingListForm';
 
 const Party = props => {
     const partyId = props.match.params.id
     const todoListId = props.partyById.todo_lists_id
+    const shoppingListId = props.partyById.shopping_lists_id
 
     useEffect(() => {
         props.getPartyById(partyId)
-        // props.addTodo()
     }, [])
 
     const goBacktoParties = () => {
         props.history.goBack()
     }
 
+
     const getShoppingList = props.partyById.shopping_list
     const getTodoList = props.partyById.todo_list
 
     return (
         <>
-            {console.log('tasks', props.task)}
+            {/* {console.log('tasks', props.task)} */}
             <button onClick={goBacktoParties}>Back</button>
             <h1>Party</h1>
             <p>{props.partyById.party_name} Party</p>
@@ -32,13 +33,23 @@ const Party = props => {
             <p>Theme: {props.partyById.theme}</p>
             <p>Budget: ${props.partyById.budget}</p>
 
+
+            {/* ---------------------------shopping list------------------------------ */}
             <h2>Shopping List</h2>
-            {getShoppingList && getShoppingList.map(item => (
+            <ShoppingListForm shoppingListId={shoppingListId} />
+            {props.item && props.item.map(item => (
                 <div>
                     {item.item}
                 </div>
             ))}
+            {getShoppingList && getShoppingList.map(item => (
+                <div>
+                    {item.item} ${item.price}
+                </div>
+            ))}
 
+
+            {/* ---------------------------todo list------------------------------ */}
             <h2>To-do List</h2>
             <TodoForm todoListId={todoListId} task={props.task}/>
             {props.task && props.task.map(task => (
@@ -59,13 +70,13 @@ const mapStateToProps = state => ({
     isLoading: state.partyReducer.isLoading,
     partyById: state.partyReducer.partyById,
     error: state.partyReducer.error,
-    task: state.todoReducer.task
-
+    task: state.todoReducer.task,
+    item: state.shoppingReducer.item
 })
 
 export default withRouter(
     connect(
         mapStateToProps,
-        { getParties, getPartyById, addTodo}
+        { getParties, getPartyById}
     )(Party)
 )
