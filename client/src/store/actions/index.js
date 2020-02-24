@@ -17,7 +17,7 @@ export {
 } from './categoryAction';
 
 export {
-    getPartyByCategory,
+    getParties,
     FETCH_PARTY_START,
     FETCH_PARTY_SUCCESS,
     FETCH_PARTY_FAILURE,

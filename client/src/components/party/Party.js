@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import {getPartyByCategory, getPartyById} from '../../store/actions';
+import {getParties, getPartyById} from '../../store/actions';
 import PartyForm from './PartiesForm';
 import './parties.scss'
 
@@ -40,6 +40,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getPartyByCategory, getPartyById}
+    { getParties, getPartyById}
   )(Party)
 )

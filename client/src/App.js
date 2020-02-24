@@ -6,7 +6,9 @@ import RegisterPage from './pages/RegisterPage';
 import Home from './pages/Home'
 import CategoreyPage from './pages/CategoreyPage'
 import Parties from './components/party/Parties';
-import Party from './components/party/Party'
+
+import PartyList from './components/partyComponents/PartyList';
+import Party from './components/partyComponents/Party';
 
 import './App.css';
 
@@ -17,12 +19,14 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/login" component={LoginPage} />
-        <Route path="/categories/:id/party" component={Parties} />
-        <Route path="/categories" component={CategoreyPage} />
         <Route path="/party/:id" component={Party} />
+        <Route path="/parties" component={PartyList} />
+
+        {/* <Route path="/categories/:id/party" component={Parties} />
+        <Route path="/categories" component={CategoreyPage} />
+        <Route path="/party/:id" component={Party} /> */}
 
       </Switch>
-      {/* <Route path="/parties" component={Parties} /> */}
     </div>
   );
 }
