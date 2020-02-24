@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getParties, getPartyById } from '../../store/actions';
-// import PartyForm from './PartiesForm';
+import { getParties, getPartyById, addTodo } from '../../store/actions';
+import TodoForm from '../todoComponents/TodoForm';
 
 const Party = props => {
-    console.log('props', props)
     const partyId = props.match.params.id
+    const todoListId = props.partyById.todo_lists_id
+
     useEffect(() => {
         props.getPartyById(partyId)
+        // props.addTodo()
     }, [])
 
     const goBacktoParties = () => {
@@ -21,7 +23,7 @@ const Party = props => {
 
     return (
         <>
-            {console.log('shoppinglist', getShoppingList)}
+            {console.log('tasks', props.task)}
             <button onClick={goBacktoParties}>Back</button>
             <h1>Party</h1>
             <p>{props.partyById.party_name} Party</p>
@@ -38,7 +40,13 @@ const Party = props => {
             ))}
 
             <h2>To-do List</h2>
-            {getTodoList && getTodoList.map(task => (
+            <TodoForm todoListId={todoListId} task={props.task}/>
+            {props.task && props.task.map(task => (
+                <div>
+                    {task.task}
+                </div>
+            ))}
+             {getTodoList && getTodoList.map(task => (
                 <div>
                     {task.task}
                 </div>
@@ -50,12 +58,14 @@ const Party = props => {
 const mapStateToProps = state => ({
     isLoading: state.partyReducer.isLoading,
     partyById: state.partyReducer.partyById,
-    error: state.partyReducer.error
+    error: state.partyReducer.error,
+    task: state.todoReducer.task
+
 })
 
 export default withRouter(
     connect(
         mapStateToProps,
-        { getParties, getPartyById }
+        { getParties, getPartyById, addTodo}
     )(Party)
 )

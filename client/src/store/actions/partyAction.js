@@ -54,6 +54,7 @@ export const addParty = state => dispatch => {
 
 export const FETCH_PARTYBYID_START = "FETCH_PARTYBYID_START"
 export const FETCH_PARTYBYID_SUCCESS = "FETCH_PARTYBYID_SUCCESS"
+export const FETCH_TODO_SUCCESS = "FETCH_TODO_SUCCESS"
 export const FETCH_PARTYBYID_FAILURE = "FETCH_PARTYBYID_FAILURE"
 
 export const getPartyById = (id) => dispatch => {
@@ -67,6 +68,10 @@ export const getPartyById = (id) => dispatch => {
                 dispatch({ 
                     type: FETCH_PARTYBYID_SUCCESS,
                     payload: response.data
+                });
+                dispatch({
+                    type: FETCH_TODO_SUCCESS,
+                    payload: response.data.todo_list
                 })
                 
             })
@@ -74,7 +79,7 @@ export const getPartyById = (id) => dispatch => {
                 console.log("party error", error)
                 dispatch({ 
                     type: FETCH_PARTYBYID_FAILURE,
-                    payload: "No parties on this categoty ID"
+                    payload: "No party"
                 })
             })   
 }
