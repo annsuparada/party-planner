@@ -24,7 +24,6 @@ const ShoppingListForm = (props) => {
     }
 
     return (<>
-    {console.log(state)}
         <input
             type="text"
             name="item"

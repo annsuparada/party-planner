@@ -13,18 +13,19 @@ const Party = props => {
     useEffect(() => {
         props.getPartyById(partyId)
     }, [])
-
+    
     const goBacktoParties = () => {
         props.history.goBack()
     }
-
-
+    
     const getShoppingList = props.partyById.shopping_list
     const getTodoList = props.partyById.todo_list
 
+
+
     return (
         <>
-            {/* {console.log('tasks', props.task)} */}
+            {/* {console.log('props.totalPrice', props.totalPrice)} */}
             <button onClick={goBacktoParties}>Back</button>
             <h1>Party</h1>
             <p>{props.partyById.party_name} Party</p>
@@ -39,15 +40,18 @@ const Party = props => {
             <ShoppingListForm shoppingListId={shoppingListId} />
             {props.item && props.item.map(item => (
                 <div>
-                    {item.item}
+                    {item.item} {item.price}
                 </div>
             ))}
             {getShoppingList && getShoppingList.map(item => (
                 <div>
-                    {item.item} ${item.price}
+                    {item.item} {item.price}
                 </div>
             ))}
-
+                 <p>Total $ {props.totalPrice}</p>
+             {props.totalPrice && props.item.map(item => ( console.log('item.price', item.price)
+                // <div> {item.price + props.totalPrice}</div>
+            ))} 
 
             {/* ---------------------------todo list------------------------------ */}
             <h2>To-do List</h2>
@@ -71,7 +75,8 @@ const mapStateToProps = state => ({
     partyById: state.partyReducer.partyById,
     error: state.partyReducer.error,
     task: state.todoReducer.task,
-    item: state.shoppingReducer.item
+    item: state.shoppingReducer.item,
+    totalPrice: state.shoppingReducer.totalPrice,
 })
 
 export default withRouter(

@@ -32,6 +32,7 @@ export {
     FETCH_PARTYBYID_SUCCESS,
     FETCH_TODO_SUCCESS,
     FETCH_ITEM_SUCCESS,
+    SUM_PRICE,
     FETCH_PARTYBYID_FAILURE,
 } from './partyAction'
 

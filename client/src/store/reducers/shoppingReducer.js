@@ -3,6 +3,7 @@ import {
     ADD_ITEM_SUCCESS,
     ADD_ITEM_FAILURE,
     FETCH_ITEM_SUCCESS,
+    SUM_PRICE,
 } from '../actions/index';
 
 
@@ -10,7 +11,11 @@ export const initialState = {
     item: [],
     isLoading: false,
     error: [],
+    totalPrice: null,
 }
+function sum(total, num) {
+    return total + num;
+  }
 
 export const shoppingReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -26,6 +31,7 @@ export const shoppingReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 item: [action.payload, ...state.item],
+                totalPrice: sum(state.totalPrice, action.payload.price),
                 error: null
             }
         case ADD_ITEM_FAILURE:
@@ -36,7 +42,13 @@ export const shoppingReducer = (state = initialState, action) => {
             }
         case FETCH_ITEM_SUCCESS:
             return {
-                item: [...state.item, action.payload]
+                ...state,
+                item: [...state.item, action.payload],
+            }
+        case SUM_PRICE:
+            return {
+                ...state,
+                totalPrice: action.payload, 
             }
         default:
             return state
