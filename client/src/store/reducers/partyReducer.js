@@ -8,6 +8,9 @@ import {
     FETCH_PARTYBYID_START,
     FETCH_PARTYBYID_SUCCESS,
     FETCH_PARTYBYID_FAILURE,
+    DELETE_PARTY_START,
+    DELETE_PARTY_SUCCESS,
+    DELETE_PARTY_FAILURE,
 } from '../actions/index';
 
 
@@ -16,6 +19,7 @@ export const initialState = {
     isLoading: false,
     error: [],
     partyById: [],
+    deleteSuccess: '',
 }
 
 export const partyReducer = (state = initialState, action) => {
@@ -40,46 +44,66 @@ export const partyReducer = (state = initialState, action) => {
                 error: action.payload,
                 parties: []
             }
-            case ADD_PARTY_START:
-                return {
-                    ...state,
-                    isLoading: true,
-                    error: null
-                }
-            case ADD_PARTY_SUCCESS:
-                return {
-                    ...state,
-                    isLoading: false,
-                    parties: [action.payload, ...state.parties],
-                    error: null
-                }
-            case ADD_PARTY_FAILURE:
-                return {
-                    ...state,
-                    isLoading: false,
-                    error: action.payload,
-                    parties: []
-                }
-                case FETCH_PARTYBYID_START:
-                    return {
-                        ...state,
-                        isLoading: true,
-                        error: null
-                    }
-                case FETCH_PARTYBYID_SUCCESS:
-                    return {
-                        ...state,
-                        isLoading: false,
-                        partyById: action.payload,
-                        error: null
-                    }
-                case FETCH_PARTYBYID_FAILURE:
-                    return {
-                        ...state,
-                        isLoading: false,
-                        error: action.payload,
-                    }                
-        default: 
-        return state
+        case ADD_PARTY_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: null
+            }
+        case ADD_PARTY_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                parties: [action.payload, ...state.parties],
+                error: null,
+                deleteSuccess: state.deleteSuccess,
+            }
+        case ADD_PARTY_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+                parties: []
+            }
+        case FETCH_PARTYBYID_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: null
+            }
+        case FETCH_PARTYBYID_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                partyById: action.payload,
+                error: null,
+            }
+        case FETCH_PARTYBYID_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        case DELETE_PARTY_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: null
+            }
+        case DELETE_PARTY_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                deleteSuccess: action.payload,
+                error: null
+            }
+        case DELETE_PARTY_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            }
+        default:
+            return state
     }
 }

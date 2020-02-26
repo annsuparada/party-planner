@@ -86,10 +86,33 @@ export const getPartyById = (id) => dispatch => {
                 
             })
             .catch(error => {
-                console.log("party error", error)
                 dispatch({ 
                     type: FETCH_PARTYBYID_FAILURE,
                     payload: "No party"
                 })
             })   
+}
+
+export const DELETE_PARTY_START = "DELETE_PARTY_START"
+export const DELETE_PARTY_SUCCESS = "DELETE_PARTY_SUCCESS"
+export const DELETE_PARTY_FAILURE = "DELETE_PARTY_FAILURE"
+
+export const deleteParty = id => dispatch => {
+    dispatch({ type: DELETE_PARTY_START })
+    return axiosWithAuth()
+        // .post("https://mypartyplanner.herokuapp.com/api/parties", state)
+        .delete(`http://localhost:8000/api/parties/${id}`)
+
+        .then(response => {
+            dispatch({
+                type: DELETE_PARTY_SUCCESS,
+                payload: response.data
+            })
+        })
+        .catch(error => {
+            dispatch({
+            type: DELETE_PARTY_FAILURE,
+            payload: error
+            })
+        })
 }

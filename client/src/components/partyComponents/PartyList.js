@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getParties, getPartyById } from '../../store/actions';
@@ -25,16 +24,16 @@ const PartyList = (props) => {
         props.history.push(`/party/${id}`)
     }
 
-    const sortedParties = props.parties.sort((a,b) => {return b.id - a.id})
+    const sortedParties = props.parties.sort((a, b) => { return b.id - a.id })
 
     return (<>
         <h1>PartyList</h1>
         {/* add form */}
         <button onClick={handleAddButton}>Add party</button>
+        {props.deleteSuccess.message && <p>{props.deleteSuccess.message}</p>}
         {form ? (
             <PartyForm handleCancelForm={handleCancelForm} setForm={setForm} />
         ) : null} <br />
-
         {sortedParties && sortedParties.map(item => (
             <div key={item.id} onClick={() => getPartyByPartyId(item.id)}>
                 <p>{item.party_name}</p>
@@ -49,7 +48,8 @@ const PartyList = (props) => {
 const mapStateToProps = state => ({
     isLoading: state.partyReducer.isLoading,
     parties: state.partyReducer.parties,
-    error: state.partyReducer.error
+    error: state.partyReducer.error,
+    deleteSuccess: state.partyReducer.deleteSuccess,
 })
 
 export default withRouter(

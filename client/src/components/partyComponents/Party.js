@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getParties, getPartyById} from '../../store/actions';
+import { getParties, getPartyById, deleteParty} from '../../store/actions';
 import TodoForm from '../todoComponents/TodoForm';
 import ShoppingListForm from '../shoppingListComponents/ShoppingListForm';
 
@@ -16,6 +16,10 @@ const Party = props => {
     
     const goBacktoParties = () => {
         props.history.goBack()
+    }
+    const deleteParty = (id) => {
+        props.deleteParty(id)
+        props.history.push('/parties')
     }
     
     const getShoppingList = props.partyById.shopping_list
@@ -33,8 +37,8 @@ const Party = props => {
             <p>Guests: {props.partyById.guests}</p>
             <p>Theme: {props.partyById.theme}</p>
             <p>Budget: ${props.partyById.budget}</p>
-
-
+            <button onClick={() => deleteParty(partyId)}>Delete</button>
+  
             {/* ---------------------------shopping list------------------------------ */}
             <h2>Shopping List</h2>
             <ShoppingListForm shoppingListId={shoppingListId} />
@@ -49,9 +53,7 @@ const Party = props => {
                 </div>
             ))}
                  <p>Total $ {props.totalPrice}</p>
-             {props.totalPrice && props.item.map(item => ( console.log('item.price', item.price)
-                // <div> {item.price + props.totalPrice}</div>
-            ))} 
+            
 
             {/* ---------------------------todo list------------------------------ */}
             <h2>To-do List</h2>
@@ -74,6 +76,7 @@ const mapStateToProps = state => ({
     isLoading: state.partyReducer.isLoading,
     partyById: state.partyReducer.partyById,
     error: state.partyReducer.error,
+    deleteSuccess: state.partyReducer.deleteSuccess,
     task: state.todoReducer.task,
     item: state.shoppingReducer.item,
     totalPrice: state.shoppingReducer.totalPrice,
@@ -82,6 +85,6 @@ const mapStateToProps = state => ({
 export default withRouter(
     connect(
         mapStateToProps,
-        { getParties, getPartyById}
+        { getParties, getPartyById, deleteParty}
     )(Party)
 )
