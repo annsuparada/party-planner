@@ -42,10 +42,15 @@ export {
 } from './partyAction'
 
 export {
-    addTodo,
-    ADD_TODO_START,
-    ADD_TODO_SUCCESS,
-    ADD_TODO_FAILURE,
+    addTask,
+    ADD_TASK_START,
+    ADD_TASK_SUCCESS,
+    ADD_TASK_FAILURE,
+
+    deleteTask,
+    DELETE_TASK_START,
+    DELETE_TASK_SUCCESS,
+    DELETE_TASK_FAILURE,
 } from './todoAction'
 
 export {

@@ -100,7 +100,6 @@ export const DELETE_PARTY_FAILURE = "DELETE_PARTY_FAILURE"
 export const deleteParty = id => dispatch => {
     dispatch({ type: DELETE_PARTY_START })
     return axiosWithAuth()
-        // .post("https://mypartyplanner.herokuapp.com/api/parties", state)
         .delete(`http://localhost:8000/api/parties/${id}`)
 
         .then(response => {

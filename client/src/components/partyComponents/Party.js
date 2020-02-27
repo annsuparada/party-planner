@@ -9,10 +9,11 @@ const Party = props => {
     const partyId = props.match.params.id
     const todoListId = props.partyById.todo_lists_id
     const shoppingListId = props.partyById.shopping_lists_id
-
     useEffect(() => {
         props.getPartyById(partyId)
     }, [])
+    const getTodoList = props.partyById.todo_list
+    const getShoppingList = props.partyById.shopping_list
     
     const goBacktoParties = () => {
         props.history.goBack()
@@ -22,14 +23,15 @@ const Party = props => {
         props.history.push('/parties')
     }
     
-    const getShoppingList = props.partyById.shopping_list
-    const getTodoList = props.partyById.todo_list
+    
 
-
+    const test = (id) => {
+        console.log(`working ${id}`)
+    }
 
     return (
         <>
-            {/* {console.log('props.totalPrice', props.totalPrice)} */}
+            {/* {console.log('=============', props)} */}
             <button onClick={goBacktoParties}>Back</button>
             <h1>Party</h1>
             <p>{props.partyById.party_name} Party</p>
@@ -56,18 +58,9 @@ const Party = props => {
             
 
             {/* ---------------------------todo list------------------------------ */}
-            <h2>To-do List</h2>
-            <TodoForm todoListId={todoListId} task={props.task}/>
-            {props.task && props.task.map(task => (
-                <div>
-                    {task.task}
-                </div>
-            ))}
-             {getTodoList && getTodoList.map(task => (
-                <div>
-                    {task.task}
-                </div>
-            ))}
+            
+            <TodoForm todoListId={todoListId} partyId={partyId} getTodoList={getTodoList}/>
+          
         </>
     )
 }
@@ -77,7 +70,6 @@ const mapStateToProps = state => ({
     partyById: state.partyReducer.partyById,
     error: state.partyReducer.error,
     deleteSuccess: state.partyReducer.deleteSuccess,
-    task: state.todoReducer.task,
     item: state.shoppingReducer.item,
     totalPrice: state.shoppingReducer.totalPrice,
 })
