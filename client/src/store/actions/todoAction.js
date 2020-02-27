@@ -34,10 +34,10 @@ export const deleteTask = id => dispatch => {
     return axiosWithAuth()
         .delete(`http://localhost:8000/api/parties/task/${id}`)
 
-        .then(response => { console.log('delete todo',response)
+        .then(response => { 
             dispatch({
                 type: DELETE_TASK_SUCCESS,
-                payload: response.data
+                payload: id
             })
         })
         .catch(error => {

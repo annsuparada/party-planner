@@ -32,7 +32,7 @@ export const ADD_PARTY_START = "ADD_PARTY_START"
 export const ADD_PARTY_SUCCESS = "ADD_PARTY_SUCCESS"
 export const ADD_PARTY_FAILURE = "ADD_PARTY_FAILURE"
 
-export const addParty = state => dispatch => {
+export const addParty = (history, state) => dispatch => {
     dispatch({ type: ADD_PARTY_START })
     return axiosWithAuth()
         // .post("https://mypartyplanner.herokuapp.com/api/parties", state)
@@ -43,6 +43,7 @@ export const addParty = state => dispatch => {
                 type: ADD_PARTY_SUCCESS,
                 payload: response.data
             })
+            history.push(`/party/${response.data.id}`)
         })
         .catch(error => {
             dispatch({

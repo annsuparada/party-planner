@@ -16,7 +16,7 @@ const PartyForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.addParty(state)
+    props.addParty(props.history, state)
   }
 
   const handleChange = e => {

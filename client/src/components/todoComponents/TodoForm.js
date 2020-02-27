@@ -42,7 +42,7 @@ const TodoForm = (props) => {
         />
         <button onClick={handleSubmit}>add</button>
         {/* =====================todo list======================== */}
-        {props.newTask && <div>{props.newTask.task}<button onClick={() => deleteTask(props.newTask.id)}>X</button></div>}
+        {/* {props.newTask && <div>{props.newTask.task}<button onClick={() => deleteTask(props.newTask.id)}>X</button></div>} */}
         {props.task && props.task.map(task => (
             <div>
                 {task.task}----<button onClick={() => deleteTask(task.id)}>X</button>
