@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { addItem } from '../../store/actions';
+import { addItem, deleteItem } from '../../store/actions';
 import { Form, Select, Input, Button } from 'antd';
 
 const ShoppingListForm = (props) => {
@@ -23,7 +23,12 @@ const ShoppingListForm = (props) => {
         })
     }
 
+    const deleteItem = (itemId) => {
+        props.deleteItem(itemId)
+    }
+
     return (<>
+     {console.log('=============', props)}
         <input
             type="text"
             name="item"
@@ -37,18 +42,28 @@ const ShoppingListForm = (props) => {
             onChange={handleChange}
         />
         <button onClick={handleSubmit}>add</button>
+
+        {/* =====================shopping list======================== */}
+        <h2>Shopping List</h2>
+        {props.item && props.item.map(item => (
+                <div>
+                    {item.item} {item.price}---<button onClick={() => props.deleteItem(item.id)}>X</button>
+                </div>
+            ))}
+        <p>Total $ {props.totalPrice}</p>
     </>);
 }
  
 const mapStateToProps = state => ({
     isLoading: state.shoppingReducer.isLoading,
     item: state.shoppingReducer.item,
+    totalPrice: state.shoppingReducer.totalPrice,
     error: state.shoppingReducer.error
 })
 
 export default withRouter(
     connect(
         mapStateToProps,
-        { addItem }
+        { addItem, deleteItem }
     )(ShoppingListForm)
 )

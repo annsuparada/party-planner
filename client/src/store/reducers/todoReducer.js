@@ -32,9 +32,7 @@ export const todoReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 task: [action.payload, ...state.task],
-                // newTask: action.payload,
                 error: null,
-                // deleteTaskSuccess: state.task.filter(e => e.id !== action.payload),
             }
         case ADD_TASK_FAILURE:
             return {
@@ -46,7 +44,6 @@ export const todoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 task: action.payload,
-                // deleteTaskSuccess: state.task.filter(e => e.id !== action.payload),
             }
         case DELETE_TASK_START:
             return {

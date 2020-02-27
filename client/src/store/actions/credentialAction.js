@@ -35,7 +35,7 @@ export const login = (history, credentials) => dispatch => {
             console.log("login ssuccess", response)
             dispatch({ type: LOGIN_SUCCESS })
             localStorage.setItem("token", response.data.token)
-            history.push("/categories")
+            history.push("/parties")
         })
         .catch(error => {
             console.log("login error", error)

@@ -42,24 +42,14 @@ const Party = props => {
             <button onClick={() => deleteParty(partyId)}>Delete</button>
   
             {/* ---------------------------shopping list------------------------------ */}
-            <h2>Shopping List</h2>
-            <ShoppingListForm shoppingListId={shoppingListId} />
-            {props.item && props.item.map(item => (
-                <div>
-                    {item.item} {item.price}
-                </div>
-            ))}
-            {getShoppingList && getShoppingList.map(item => (
-                <div>
-                    {item.item} {item.price}
-                </div>
-            ))}
-                 <p>Total $ {props.totalPrice}</p>
             
+            <ShoppingListForm shoppingListId={shoppingListId} partyId={partyId} />
+
+    
 
             {/* ---------------------------todo list------------------------------ */}
             
-            <TodoForm todoListId={todoListId} partyId={partyId} getTodoList={getTodoList}/>
+            <TodoForm todoListId={todoListId} partyId={partyId}/>
           
         </>
     )
