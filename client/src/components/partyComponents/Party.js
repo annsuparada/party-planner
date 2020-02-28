@@ -12,8 +12,6 @@ const Party = props => {
     useEffect(() => {
         props.getPartyById(partyId)
     }, [])
-    const getTodoList = props.partyById.todo_list
-    const getShoppingList = props.partyById.shopping_list
     
     const goBacktoParties = () => {
         props.history.goBack()
@@ -23,15 +21,8 @@ const Party = props => {
         props.history.push('/parties')
     }
     
-    
-
-    const test = (id) => {
-        console.log(`working ${id}`)
-    }
-
     return (
         <>
-            {/* {console.log('=============', props)} */}
             <button onClick={goBacktoParties}>Back</button>
             <h1>Party</h1>
             <p>{props.partyById.party_name} Party</p>
@@ -42,15 +33,11 @@ const Party = props => {
             <button onClick={() => deleteParty(partyId)}>Delete</button>
   
             {/* ---------------------------shopping list------------------------------ */}
-            
+            <br/>
             <ShoppingListForm shoppingListId={shoppingListId} partyId={partyId} />
 
-    
-
             {/* ---------------------------todo list------------------------------ */}
-            
             <TodoForm todoListId={todoListId} partyId={partyId}/>
-          
         </>
     )
 }

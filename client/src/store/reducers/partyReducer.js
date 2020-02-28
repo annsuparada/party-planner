@@ -20,7 +20,16 @@ export const initialState = {
     error: [],
     partyById: [],
     deleteSuccess: '',
+    party: {
+        party_name: '',
+        guests: '',
+        theme: '',
+        date: '',
+        budget: null,
+    }
+    
 }
+
 
 export const partyReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -102,6 +111,11 @@ export const partyReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload,
+            }
+        case 'UPDATE_FORM':
+            return {
+                ...state,
+                party: {...state.party, ...action.payload},
             }
         default:
             return state

@@ -7,10 +7,10 @@ import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter } from "react-router-dom";
 import { reducer } from "./store/reducers/index";
 import 'antd/dist/antd.css';
-import './index.css';
+import './styles/global.scss'
 import App from './App';
 
-const store = createStore(reducer, applyMiddleware(thunk, logger));
+const store = createStore(reducer, applyMiddleware(thunk));
 
 ReactDOM.render(
     <Provider store={store} >

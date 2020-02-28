@@ -10,7 +10,6 @@ export const getParties = (id) => dispatch => {
             // .get(`https://mypartyplanner.herokuapp.com/api/categories/${id}/party`)
             .get(`http://localhost:8000/api/parties`)
             .then(response => {
-                console.log("party by cat", response)
                 dispatch({ 
                     type: FETCH_PARTY_SUCCESS,
                     payload: response.data

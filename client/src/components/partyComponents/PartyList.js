@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getParties, getPartyById } from '../../store/actions';
+import { getParties, getPartyById, addParty } from '../../store/actions';
 import PartyForm from './PartyForm';
-
-
+import { Modal, Button } from 'antd';
+import './partyList.scss'
+import { partyReducer, initialState } from '../../store/reducers/partyReducer';
 
 const PartyList = (props) => {
     const [form, setForm] = useState(false)
+    const [state, dispatch] = useReducer(partyReducer, initialState);
+
     useEffect(() => {
         props.getParties();
     }, [])
@@ -20,29 +23,53 @@ const PartyList = (props) => {
         setForm(false)
     }
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        console.log('state', state.party)
+        props.addParty(props.history, state.party)
+      }
+
     const getPartyByPartyId = (id) => {
         props.history.push(`/party/${id}`)
     }
 
     const sortedParties = props.parties.sort((a, b) => { return b.id - a.id })
 
-    return (<>
-        <h1>PartyList</h1>
-        {/* add form */}
-        <button onClick={handleAddButton}>Add party</button>
+    return (
+    <div className='party-list-container'>
+        <h1>All yours parties </h1>
         {props.deleteSuccess.message && <p>{props.deleteSuccess.message}</p>}
-        {form ? (
-            <PartyForm handleCancelForm={handleCancelForm} setForm={setForm} />
-        ) : null} <br />
+        <Modal
+          title="Add Party"
+          visible={form}
+          onOk={handleSubmit}
+          okText="Add"
+          onCancel={handleCancelForm}
+          
+        >
+            <PartyForm dispatch={dispatch}
+                setForm={setForm} 
+                {...state.party}
+            />
+
+        </Modal>
+        
+
+        <div className="parties-wrap">
+        <div className="parties-box" onClick={handleAddButton}>
+            <p className="add-icon">+</p>
+            <p>Add party</p>
+            </div>
         {sortedParties && sortedParties.map(item => (
-            <div key={item.id} onClick={() => getPartyByPartyId(item.id)}>
+            <div className="parties-box" key={item.id} onClick={() => getPartyByPartyId(item.id)}>
                 <p>{item.party_name}</p>
                 <p>{item.guests}</p>
                 <p>{item.date}</p>
                 <p>{item.budget}</p>
             </div>
         ))}
-    </>);
+        </div>
+    </div>);
 }
 
 const mapStateToProps = state => ({
@@ -50,11 +77,12 @@ const mapStateToProps = state => ({
     parties: state.partyReducer.parties,
     error: state.partyReducer.error,
     deleteSuccess: state.partyReducer.deleteSuccess,
+    addPartyState: state.partyReducer.addPartyState,
 })
 
 export default withRouter(
     connect(
         mapStateToProps,
-        { getParties, getPartyById }
+        { getParties, getPartyById, addParty }
     )(PartyList)
 )

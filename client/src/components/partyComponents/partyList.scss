@@ -1,0 +1,26 @@
+@import '../../styles/variable';
+
+
+.party-list-container{
+    text-align: center;
+
+    .parties-wrap{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .add-icon{
+            font-size: 7rem;
+            margin: 0px;
+        }
+        .parties-box{
+            border: 1px solid black;
+            width: 25%;
+            margin: 10px 10px;
+          }
+          .parties-box:hover{
+            box-shadow: 5px 10px 8px #888888;
+            cursor: pointer;
+          }
+    }
+}
