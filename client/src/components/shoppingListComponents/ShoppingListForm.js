@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addItem, deleteItem } from '../../store/actions';
-import { Form, Select, Input, Button, Row, Col, Icon } from 'antd';
+import { Form, Select, Input, Button, Row, Col, Icon, Popconfirm, message } from 'antd';
 import './shoppingListForm.scss'
 const ShoppingListForm = (props) => {
     const [state, setSate] = useState({
@@ -25,6 +25,7 @@ const ShoppingListForm = (props) => {
 
     const deleteItem = (itemId) => {
         props.deleteItem(itemId)
+        message.success(`Item was deleted!`);
     }
 
     return (
@@ -58,14 +59,20 @@ const ShoppingListForm = (props) => {
 
             {/* =====================shopping list======================== */}
             {props.item && props.item.map(item => (
-                // <div className='shopping-list'>
                 <Row>
-                    <Col span={10}><p>{item.item}</p></Col>
-                    <Col span={10}><p>{item.price}</p></Col>
+                    <Col span={9}><p>{item.item}</p></Col>
+                    <Col span={1}><div></div></Col>
+                    <Col span={9}><p>{item.price}</p></Col>
+                    <Col span={1}><div></div></Col>
                     <Col span={4}>
-                        <div onClick={() => props.deleteItem(item.id)}>
-                            <Icon type="close-square" style={{fontSize: 25}}/>
-                        </div>
+                        <Popconfirm
+                            title="Are you sure delete this item?"
+                            onConfirm={() => deleteItem(item.id)}
+                            okText="Yes"
+                            cancelText="No"
+                        >
+                            <Icon type="close-square" style={{ fontSize: 25 }} />
+                        </Popconfirm>
                     </Col>
                 </Row>
                 // </div>

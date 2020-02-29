@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getPartyById, addTask, deleteTask } from '../../store/actions';
-import { Form, Select, Input, Button, Row, Col, Icon } from 'antd';
+import { Form, Select, Input, Button, Row, Col, Icon, Popconfirm, message } from 'antd';
 import './todoForm.scss'
 const TodoForm = (props) => {
     const [state, setSate] = useState({
@@ -26,9 +26,9 @@ const TodoForm = (props) => {
         })
     }
 
-    // const taskId = 
     const deleteTask = (taskId) => {
         props.deleteTask(taskId)
+        message.success(`Task was deleted!`);
     }
 
     return (
@@ -54,9 +54,14 @@ const TodoForm = (props) => {
                 <Row>
                     <Col span={20}><p>{task.task}</p></Col>
                     <Col span={4}>
-                        <div onClick={() => deleteTask(task.id)}>
+                    <Popconfirm
+                            title="Are you sure delete this task?"
+                            onConfirm={() => deleteTask(task.id)}
+                            okText="Yes"
+                            cancelText="No"
+                        >
                         <Icon type="close-square" style={{fontSize: 25}}/>
-                        </div>
+                        </Popconfirm>
                     </Col>
                 </Row>
             ))}

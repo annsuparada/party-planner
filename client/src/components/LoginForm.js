@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { login } from "../store/actions/index";
-import Loader from 'react-loader-spinner'
-
+import { Spin } from 'antd';
 const LoginForm = props => {
     const [input, setInput] = useState({
         username: "",
@@ -42,12 +41,8 @@ const LoginForm = props => {
             />
             <button>
                 {props.isLoading ? (
-                    <Loader
-                        type="TailSpin"
-                        color="#00BFFF"
-                        height={100}
-                        width={100}
-                /> ):(
+                 <Spin size="large" />
+                 ):(
                 'Submit'
                 )}
             </button>

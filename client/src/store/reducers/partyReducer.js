@@ -65,7 +65,6 @@ export const partyReducer = (state = initialState, action) => {
                 isLoading: false,
                 parties: [action.payload, ...state.parties],
                 error: null,
-                deleteSuccess: state.deleteSuccess,
             }
         case ADD_PARTY_FAILURE:
             return {
