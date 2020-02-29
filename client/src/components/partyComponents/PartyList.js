@@ -25,8 +25,7 @@ const PartyList = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log('state', state.party)
-        props.addParty(props.history, state.party)
+        // props.addParty(props.history, state.party)
     }
 
     const getPartyByPartyId = (id) => {

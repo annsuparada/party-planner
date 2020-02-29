@@ -16,6 +16,7 @@ export const initialState = {
     error: [],
     totalPrice: null,
 }
+
 function sum(total, num) {
     return total + num;
 }

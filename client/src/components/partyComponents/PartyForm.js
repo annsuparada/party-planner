@@ -8,16 +8,35 @@ const PartyForm = (props) => {
   const handleChange = (e) => {
     props.dispatch({
       type: 'UPDATE_FORM',
-      payload: {[e.target.name]:e.target.value}
+      payload: { [e.target.name]: e.target.value }
     })
   }
+  const validateMessages = {
+    required: "'${name}' is required!",
+    // ...
+  };
+  const formRef = React.createRef();
 
   return (
     <>
       <div>
-        {/* {console.log('props', props)} */}
-        <Form  labelCol={{ span: 5 }} wrapperCol={{ span: 18 }}>
-          <Form.Item label="Party Name">
+        <Form labelCol={{ span: 5 }} wrapperCol={{ span: 18 }} name="control-ref" ref={formRef} >
+          <Form.Item
+            label="Username"
+            name="username"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your username!',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Party Name"
+            rules={[{ required: true }]}
+          >
             <Input
               type="text"
               name="party_name"
@@ -57,7 +76,9 @@ const PartyForm = (props) => {
               onChange={handleChange}
             />
           </Form.Item>
-          {/* <Button onClick={handleSubmit} type="primary">add</Button> */}
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
         </Form>
       </div>
     </>
