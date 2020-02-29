@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getPartyById, addTask, deleteTask } from '../../store/actions';
-import { Form, Select, Input, Button, Row, Col, Icon, Popconfirm, message } from 'antd';
+import { Form, Select, Input, Button, Row, Col, Popconfirm, message } from 'antd';
+import {CloseSquareOutlined} from '@ant-design/icons';
 import './todoForm.scss'
+
 const TodoForm = (props) => {
     const [state, setSate] = useState({
         task: '',
@@ -60,7 +62,8 @@ const TodoForm = (props) => {
                             okText="Yes"
                             cancelText="No"
                         >
-                        <Icon type="close-square" style={{fontSize: 25}}/>
+                        {/* <Icon type="close-square" style={{fontSize: 25}}/> */}
+                        <CloseSquareOutlined />
                         </Popconfirm>
                     </Col>
                 </Row>

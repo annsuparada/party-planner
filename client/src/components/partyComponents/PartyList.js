@@ -24,7 +24,8 @@ const PartyList = (props) => {
     }
 
     const handleSubmit = e => {
-        e.preventDefault();
+        // e.preventDefault();
+        console.log('list')
         // props.addParty(props.history, state.party)
     }
 
@@ -49,7 +50,7 @@ const PartyList = (props) => {
                 {props.isLoading && <div><Spin size="large"  style={{ display: 'flex', justifyContent: 'center' }} />{props.isLoading}</div>}
                 <PartyForm dispatch={dispatch}
                     setForm={setForm}
-                    {...state.party}
+                    {...state}
                 />
 
             </Modal>

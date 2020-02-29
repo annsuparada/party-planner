@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addItem, deleteItem } from '../../store/actions';
-import { Form, Select, Input, Button, Row, Col, Icon, Popconfirm, message } from 'antd';
-import './shoppingListForm.scss'
+import { Form, Select, Input, Button, Row, Col, Popconfirm, message } from 'antd';
+import './shoppingListForm.scss';
+
+import {CloseSquareOutlined} from '@ant-design/icons';
+
 const ShoppingListForm = (props) => {
     const [state, setSate] = useState({
         item: '',
@@ -71,7 +74,8 @@ const ShoppingListForm = (props) => {
                             okText="Yes"
                             cancelText="No"
                         >
-                            <Icon type="close-square" style={{ fontSize: 25 }} />
+                            {/* <Icon type="close-square" style={{ fontSize: 25 }} /> */}
+                            <CloseSquareOutlined />
                         </Popconfirm>
                     </Col>
                 </Row>

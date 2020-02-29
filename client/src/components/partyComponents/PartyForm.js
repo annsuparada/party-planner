@@ -11,31 +11,26 @@ const PartyForm = (props) => {
       payload: { [e.target.name]: e.target.value }
     })
   }
-  const validateMessages = {
-    required: "'${name}' is required!",
-    // ...
-  };
-  const formRef = React.createRef();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.addParty(props.history, props.party)
+}
 
   return (
     <>
       <div>
-        <Form labelCol={{ span: 5 }} wrapperCol={{ span: 18 }} name="control-ref" ref={formRef} >
+        {console.log(props.party)}
+        <Form labelCol={{ span: 5 }} wrapperCol={{ span: 18 }} >
           <Form.Item
-            label="Username"
-            name="username"
+            label="Party Name"
+            name="party_name"
             rules={[
               {
                 required: true,
-                message: 'Please input your username!',
+                message: 'Party name is required!',
               },
             ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Party Name"
-            rules={[{ required: true }]}
           >
             <Input
               type="text"
@@ -44,7 +39,16 @@ const PartyForm = (props) => {
               onChange={handleChange}
             />
           </Form.Item>
-          <Form.Item label="Guests">
+          <Form.Item 
+          label="Guests" 
+          name="guests"
+            rules={[
+              {
+                required: true,
+                message: 'Gueste is required!',
+              },
+            ]}
+            >
             <Input
               type="text"
               name="guests"
@@ -52,7 +56,16 @@ const PartyForm = (props) => {
               onChange={handleChange}
             />
           </Form.Item>
-          <Form.Item label="Theme">
+          <Form.Item 
+          label="Theme"
+          name="theme"
+            rules={[
+              {
+                required: true,
+                message: 'Theme is required!',
+              },
+            ]}
+          >
             <Input
               type="text"
               name="theme"
@@ -60,7 +73,16 @@ const PartyForm = (props) => {
               onChange={handleChange}
             />
           </Form.Item>
-          <Form.Item label="Date">
+          <Form.Item 
+          label="Date"
+          name="date"
+            rules={[
+              {
+                required: true,
+                message: 'Date is required!',
+              },
+            ]}
+          >
             <Input
               type="date"
               name="date"
@@ -68,7 +90,16 @@ const PartyForm = (props) => {
               onChange={handleChange}
             />
           </Form.Item>
-          <Form.Item label="Budget">
+          <Form.Item 
+          label="Budget"
+          name="budget"
+            rules={[
+              {
+                required: true,
+                message: 'Budget is required!',
+              },
+            ]}
+          >
             <Input
               type="number"
               name="budget"
@@ -76,7 +107,7 @@ const PartyForm = (props) => {
               onChange={handleChange}
             />
           </Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" onClick={(e) => handleSubmit(e)}>
             Submit
           </Button>
         </Form>
