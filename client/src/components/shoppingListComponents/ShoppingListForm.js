@@ -5,17 +5,28 @@ import { addItem, deleteItem } from '../../store/actions';
 import { Form, Select, Input, Button, Row, Col, Popconfirm, message } from 'antd';
 import './shoppingListForm.scss';
 
-import {CloseSquareOutlined} from '@ant-design/icons';
+import { CloseSquareOutlined } from '@ant-design/icons';
 
 const ShoppingListForm = (props) => {
     const [state, setSate] = useState({
         item: '',
         price: null
     })
-
+    const validateForm = () => {
+        let valid = true
+        if (state.item.length <= 0) {
+            valid = false
+        } else if (state.price === null) {
+            valid = false
+        }
+        return valid
+    }
     const handleSubmit = e => {
-        e.preventDefault();
-        props.addItem(state)
+        if (validateForm()){
+            props.addItem(state)
+        } else {
+            console.log('Invalid form')
+        }
     }
 
     const handleChange = e => {
@@ -34,35 +45,56 @@ const ShoppingListForm = (props) => {
     return (
         <div className='list-box'>
             <h2>Shopping List</h2>
-            <Row type="flex" justify="space-around">
-                <Col span={10}>
-                    <Input
-                        type="text"
+            <Form>
+                <Row type="flex" justify="space-around">
+                    <Col span={10}>
+                        <Form.Item
                         name="item"
-                        value={state.item}
-                        onChange={handleChange}
-                        placeholder="Item"
-                        size="small"
-                    />
-                </Col>
-                <Col span={10}>
-                    <Input
-                        type="text"
-                        name="price"
-                        value={state.price}
-                        onChange={handleChange}
-                        placeholder="Price"
-                        size="small"
-                    />
-                </Col>
-                <Col span={4}>
-                    <Button size='small' type="primary" onClick={handleSubmit}>add</Button>
-                </Col>
-            </Row>
-
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Item is required!',
+                          },
+                        ]}
+                        >
+                            <Input
+                                type="text"
+                                name="item"
+                                value={state.item}
+                                onChange={handleChange}
+                                placeholder="Item"
+                            />
+                        </Form.Item>
+                    </Col>
+                    <Col span={10}>
+                        <Form.Item
+                         name="price"
+                         rules={[
+                           {
+                             required: true,
+                             message: 'Price must be interger',
+                           },
+                         ]}
+                        >
+                            <Input
+                                type="number"
+                                name="price"
+                                value={state.price}
+                                onChange={handleChange}
+                                placeholder="Price"
+                            />
+                        </Form.Item>
+                    </Col>
+                    <Col span={4}>
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit" onClick={handleSubmit}>add</Button>
+                        </Form.Item>
+                    </Col>
+                </Row>
+            </Form>
             {/* =====================shopping list======================== */}
             {props.item && props.item.map(item => (
-                <Row>
+                <Row key={item.id}>
                     <Col span={9}><p>{item.item}</p></Col>
                     <Col span={1}><div></div></Col>
                     <Col span={9}><p>{item.price}</p></Col>
@@ -74,12 +106,10 @@ const ShoppingListForm = (props) => {
                             okText="Yes"
                             cancelText="No"
                         >
-                            {/* <Icon type="close-square" style={{ fontSize: 25 }} /> */}
                             <CloseSquareOutlined />
                         </Popconfirm>
                     </Col>
                 </Row>
-                // </div>
             ))}
             <p>Total $ {props.totalPrice || 0}</p>
         </div>

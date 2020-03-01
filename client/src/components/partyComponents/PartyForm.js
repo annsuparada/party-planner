@@ -16,7 +16,7 @@ const PartyForm = (props) => {
       valid = false
     } else if (props.party.date.length <= 0){
       valid = false
-    } else if (props.party.budget.length <= 0){
+    } else if (props.party.budget === null){
       valid = false
     } 
     return valid

@@ -15,9 +15,19 @@ const TodoForm = (props) => {
         props.getPartyById(props.partyId)
     }, [])
 
+    const validateForm = () => {
+        let valid = true
+        if (state.task.length <= 0){
+            valid = false
+        }
+        return valid
+    }
     const handleSubmit = e => {
-        e.preventDefault();
-        props.addTask(state)
+        if (validateForm()) {
+            props.addTask(state)
+        } else {
+            console.log('Invalid Form')
+        }
     }
 
     const handleChange = e => {
@@ -36,8 +46,18 @@ const TodoForm = (props) => {
     return (
         <div className='list-box'>
             <h2>To-do List</h2>
+            <Form>
             <Row type="flex" justify="space-around">
                 <Col span={20}>
+                    <Form.Item
+                    name="task"
+                    rules={[
+                        {
+                          required: true,
+                          message: 'Task is required!',
+                        },
+                      ]}
+                    >
                     <Input
                         type="text"
                         name="task"
@@ -46,14 +66,18 @@ const TodoForm = (props) => {
                         placeholder="Task"
                         size="small"
                     />
+                    </Form.Item>
                 </Col>
                 <Col span={4}>
-                    <Button size='small' type="primary"onClick={handleSubmit}>add</Button>
+                    <Form.Item>
+                    <Button type="primary" htmlType="submit"  onClick={handleSubmit}>add</Button>
+                    </Form.Item>
                 </Col>
             </Row>
+            </Form>
             {/* =====================todo list======================== */}
             {props.task && props.task.map(task => (
-                <Row>
+                <Row key={task.id}>
                     <Col span={20}><p>{task.task}</p></Col>
                     <Col span={4}>
                     <Popconfirm
@@ -67,6 +91,7 @@ const TodoForm = (props) => {
                         </Popconfirm>
                     </Col>
                 </Row>
+                
             ))}
         </div>);
 }
