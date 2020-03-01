@@ -8,7 +8,7 @@ import './partyList.scss'
 import { partyReducer, initialState } from '../../store/reducers/partyReducer';
 
 const PartyList = (props) => {
-    const [form, setForm] = useState(false)
+    const [formModal, setFormModal] = useState(false)
     const [state, dispatch] = useReducer(partyReducer, initialState);
 
     useEffect(() => {
@@ -17,17 +17,12 @@ const PartyList = (props) => {
 
     //form function
     const handleAddButton = () => {
-        setForm(!form);
+        setFormModal(!formModal);
     }
     const handleCancelForm = () => {
-        setForm(false)
+        setFormModal(false)
     }
 
-    const handleSubmit = e => {
-        // e.preventDefault();
-        console.log('list')
-        // props.addParty(props.history, state.party)
-    }
 
     const getPartyByPartyId = (id) => {
         props.history.push(`/party/${id}`)
@@ -41,15 +36,15 @@ const PartyList = (props) => {
             {props.isLoading && <div><Spin size="large" />{props.isLoading}</div>}
             <Modal
                 title="Add Party"
-                visible={form}
-                onOk={handleSubmit}
+                visible={formModal}
                 okText="Add"
                 onCancel={handleCancelForm}
+                footer={null}
                 
                 >
                 {props.isLoading && <div><Spin size="large"  style={{ display: 'flex', justifyContent: 'center' }} />{props.isLoading}</div>}
                 <PartyForm dispatch={dispatch}
-                    setForm={setForm}
+                     setFormModal={setFormModal}
                     {...state}
                 />
 

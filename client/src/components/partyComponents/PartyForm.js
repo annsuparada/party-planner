@@ -5,6 +5,23 @@ import { addParty } from '../../store/actions';
 import { Form, Select, Input, Button } from 'antd';
 
 const PartyForm = (props) => {
+
+  const validationForm = () => {
+    let valid = true
+    if(props.party.party_name.length <= 0){
+      valid = false
+    } else if (props.party.guests.length <= 0){
+      valid = false
+    } else if (props.party.theme.length <= 0){
+      valid = false
+    } else if (props.party.date.length <= 0){
+      valid = false
+    } else if (props.party.budget.length <= 0){
+      valid = false
+    } 
+    return valid
+  }
+
   const handleChange = (e) => {
     props.dispatch({
       type: 'UPDATE_FORM',
@@ -13,14 +30,17 @@ const PartyForm = (props) => {
   }
 
   const handleSubmit = e => {
-    e.preventDefault();
-    props.addParty(props.history, props.party)
+    if(validationForm()){
+      console.log('validate form')
+      props.addParty(props.history, props.party)
+    } else {
+      console.log('Invalid Form')
+    }
 }
 
   return (
     <>
       <div>
-        {console.log(props.party)}
         <Form labelCol={{ span: 5 }} wrapperCol={{ span: 18 }} >
           <Form.Item
             label="Party Name"
@@ -96,7 +116,7 @@ const PartyForm = (props) => {
             rules={[
               {
                 required: true,
-                message: 'Budget is required!',
+                message: 'Budget is required! and input must be interger',
               },
             ]}
           >
@@ -107,7 +127,12 @@ const PartyForm = (props) => {
               onChange={handleChange}
             />
           </Form.Item>
-          <Button type="primary" htmlType="submit" onClick={(e) => handleSubmit(e)}>
+          <Button 
+          type="primary" 
+          htmlType="submit" 
+          onClick={(e) => handleSubmit(e)}
+          style={{ marginLeft: 2 }}
+          >
             Submit
           </Button>
         </Form>
