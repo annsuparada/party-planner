@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { login } from "../store/actions/index";
+import { login } from "../../store/actions/index";
 import { Spin, Form, Input, Button, Alert } from 'antd';
+
 const LoginForm = props => {
     const [input, setInput] = useState({
         username: "",

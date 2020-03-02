@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { register } from "../store/actions/index";
+import { register } from "../../store/actions/index";
 import { Spin, Form, Input, Button, Alert } from 'antd';
 import './form.scss'
 const RegisterForm = props => {
