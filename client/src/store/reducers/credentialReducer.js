@@ -12,7 +12,7 @@ export const initialState = {
     isLoading: false,
     isRegisted: false,
     isLoggedIn: false,
-    error: [],
+    error: null,
 }
 
 export const credentialReducer = (state = initialState, action) => {

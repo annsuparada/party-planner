@@ -14,7 +14,7 @@ const ShoppingListForm = (props) => {
     })
     const validateForm = () => {
         let valid = true
-        if (state.item.length <= 0) {
+        if (state.item.length === 0) {
             valid = false
         } else if (state.price === null) {
             valid = false

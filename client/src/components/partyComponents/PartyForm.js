@@ -8,13 +8,13 @@ const PartyForm = (props) => {
 
   const validationForm = () => {
     let valid = true
-    if(props.party.party_name.length <= 0){
+    if(props.party.party_name.length === 0){
       valid = false
-    } else if (props.party.guests.length <= 0){
+    } else if (props.party.guests.length === 0){
       valid = false
-    } else if (props.party.theme.length <= 0){
+    } else if (props.party.theme.length === 0){
       valid = false
-    } else if (props.party.date.length <= 0){
+    } else if (props.party.date.length === 0){
       valid = false
     } else if (props.party.budget === null){
       valid = false

@@ -17,7 +17,7 @@ const TodoForm = (props) => {
 
     const validateForm = () => {
         let valid = true
-        if (state.task.length <= 0){
+        if (state.task.length === 0){
             valid = false
         }
         return valid
