@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addItem, deleteItem } from '../../store/actions';
-import { Form, Select, Input, Button, Row, Col, Popconfirm, message } from 'antd';
+import { Form, Input, Button, Row, Col, Popconfirm, message } from 'antd';
 import './shoppingListForm.scss';
 
 import { CloseSquareOutlined } from '@ant-design/icons';

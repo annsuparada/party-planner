@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { register } from "../store/actions/index";
-import { Spin, Form, Input, Button, Alert, Row, Col } from 'antd';
+import { Spin, Form, Input, Button, Alert } from 'antd';
 import './form.scss'
 const RegisterForm = props => {
 
@@ -95,8 +95,6 @@ const RegisterForm = props => {
         </Form.Item>
 
         <Form.Item {...tailLayout}>
-
-
           <Button
             type="primary"
             htmlType="submit"
@@ -106,7 +104,7 @@ const RegisterForm = props => {
             Submit
           </Button>
         </Form.Item>
-
+        <p>Already had an account? <Link to='/login'>Login</Link></p>
 
       </Form>
 
