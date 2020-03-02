@@ -50,6 +50,9 @@ const RegisterForm = props => {
     setNewUsername({ ...validateUserName(e.target.value), "username": e.target.value });
     setNewPassword({ ...validatePassword(e.target.value), "password": e.target.value })
   };
+  const handleInputPassword = e => {
+    setNewPassword({ ...validatePassword(e.target.value), "password": e.target.value })
+  };
   const layout = {
     labelCol: { span: 5 },
     wrapperCol: { span: 15 },
@@ -60,6 +63,7 @@ const RegisterForm = props => {
 
   return (
     <>
+    <Spin tip="Loading" spinning={props.isLoading}>
       <Form {...layout} className="form">
 
         <h3>Register Form</h3>
@@ -90,7 +94,7 @@ const RegisterForm = props => {
             type="password"
             name="password"
             value={newPassword.password}
-            onChange={handleInputChange}
+            onChange={handleInputPassword}
           />
         </Form.Item>
 
@@ -107,6 +111,7 @@ const RegisterForm = props => {
         <p>Already had an account? <Link to='/login'>Login</Link></p>
 
       </Form>
+      </Spin>
 
     </>
   )

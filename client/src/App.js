@@ -5,7 +5,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Home from './pages/Home'
 import PartyListPage from './pages/PartyListPage'
-import Party from './components/partyComponents/Party';
+import PartyPage from './pages/PartyPage';
 import TestPage from './components/partyComponents/TestPage';
 import './App.css';
 
@@ -16,7 +16,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/login" component={LoginPage} />
-        <Route path="/party/:id" component={Party} />
+        <Route path="/party/:id" component={PartyPage} />
         <Route path="/parties" component={PartyListPage} />
         <Route path="/test" component={TestPage} />
       
