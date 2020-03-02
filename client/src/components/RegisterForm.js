@@ -5,17 +5,17 @@ import { register } from "../store/actions/index";
 import { Spin, Form, Input, Button, Alert, Row, Col } from 'antd';
 import './form.scss'
 const RegisterForm = props => {
-  
+
   const [newUsername, setNewUsername] = useState({ username: "" });
-  const [newPassword, setNewPassword] = useState({ password: ""})
- 
+  const [newPassword, setNewPassword] = useState({ password: "" })
+
 
   const validateUserName = (username) => {
     if (username.length >= 3) {
       return {
         validateStatus: 'success',
         errorMsg: null,
-        
+
       };
     }
     return {
@@ -28,7 +28,7 @@ const RegisterForm = props => {
       return {
         validateStatus: 'success',
         errorMsg: null,
-        
+
       };
     }
     return {
@@ -36,10 +36,10 @@ const RegisterForm = props => {
       errorMsg: 'Password must have at least 6 characters',
     };
   }
-  
+
   const handleSubmit = event => {
     if (validateUserName(event) && validatePassword(event)) {
-      props.register(props.history, {username: newUsername.username, password: newPassword.password});
+      props.register(props.history, { username: newUsername.username, password: newPassword.password });
     } else {
       console.log("Invalid Form");
     }
@@ -50,25 +50,25 @@ const RegisterForm = props => {
     setNewUsername({ ...validateUserName(e.target.value), "username": e.target.value });
     setNewPassword({ ...validatePassword(e.target.value), "password": e.target.value })
   };
-
   const layout = {
-    labelCol: {
-      span: 5,
-    },
-    wrapperCol: {
-      span: 15,
-    },
+    labelCol: { span: 5 },
+    wrapperCol: { span: 15 },
   };
-  
+  const tailLayout = {
+    wrapperCol: { offset: 5, span: 4 },
+  };
+
   return (
     <>
       <Form {...layout} className="form">
-      <h3>Register Form</h3>
+
+        <h3>Register Form</h3>
+
         <Form.Item
-        label="Username"
-        name="username"
-        validateStatus={newUsername.validateStatus}
-        help={newUsername.errorMsg}
+          label="Username"
+          name="username"
+          validateStatus={newUsername.validateStatus}
+          help={newUsername.errorMsg}
         >
           <Input
             placeholder="Username"
@@ -77,13 +77,13 @@ const RegisterForm = props => {
             value={newUsername.username}
             onChange={handleInputChange}
           />
-        {props.error && <Alert message={props.error} type="error" />}
+          {props.error && <Alert message={props.error} type="error" closable="true"/>}
         </Form.Item>
         <Form.Item
-        label="Password"
-        name="password"
-        validateStatus={newPassword.validateStatus}
-        help={newPassword.errorMsg}
+          label="Password"
+          name="password"
+          validateStatus={newPassword.validateStatus}
+          help={newPassword.errorMsg}
         >
           <Input
             placeholder="Password"
@@ -93,16 +93,21 @@ const RegisterForm = props => {
             onChange={handleInputChange}
           />
         </Form.Item>
-        <Form.Item>
-          <Button 
-          type="primary"
-           htmlType="submit" 
-           onClick={handleSubmit} 
-           className="submit-btn"
-           >
+
+        <Form.Item {...tailLayout}>
+
+
+          <Button
+            type="primary"
+            htmlType="submit"
+            onClick={handleSubmit}
+            className="submit-btn"
+          >
             Submit
-            </Button>
+          </Button>
         </Form.Item>
+
+
       </Form>
 
     </>
