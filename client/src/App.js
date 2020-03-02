@@ -4,10 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Home from './pages/Home'
-import CategoreyPage from './pages/CategoreyPage'
-import Parties from './components/party/Parties';
-
-import PartyList from './components/partyComponents/PartyList';
+import PartyListPage from './pages/PartyListPage'
 import Party from './components/partyComponents/Party';
 import TestPage from './components/partyComponents/TestPage';
 import './App.css';
@@ -20,11 +17,9 @@ function App() {
         <Route path="/register" component={RegisterPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/party/:id" component={Party} />
-        <Route path="/parties" component={PartyList} />
+        <Route path="/parties" component={PartyListPage} />
         <Route path="/test" component={TestPage} />
-        {/* <Route path="/categories/:id/party" component={Parties} />
-        <Route path="/categories" component={CategoreyPage} />
-        <Route path="/party/:id" component={Party} /> */}
+      
 
       </Switch>
     </div>

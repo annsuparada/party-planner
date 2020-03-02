@@ -5,6 +5,7 @@ import {
     LOGIN_START,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
+    LOGOUT
 } from '../actions/index';
 
 
@@ -56,8 +57,14 @@ export const credentialReducer = (state = initialState, action) => {
                 isLoading: false,
                 error: action.payload
             }
+        case LOGOUT:
+            return {
+                ...state,
+                isLoggingIn: false,
+                isLoading: false,
+            }
 
-        default: 
-        return state
+        default:
+            return state
     }
 }

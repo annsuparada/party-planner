@@ -1,0 +1,32 @@
+
+
+.nav {
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    background-color:  red;
+    height: 64px;
+    -webkit-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+    top: 0;
+    a {
+        padding: 1.5rem;
+        font-size: 18px;
+        color: blue;
+    }
+    a:hover{
+        color: white;
+        text-decoration: underline;
+        
+    }
+    .active {
+        color: white;
+        text-decoration: underline;
+    }
+
+    // @media #{$mobile-small} {
+    //     justify-content: center;
+    //  }
+}

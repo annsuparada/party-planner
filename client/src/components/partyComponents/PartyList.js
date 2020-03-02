@@ -7,6 +7,7 @@ import { Modal, Button, Spin } from 'antd';
 import './partyList.scss'
 import { partyReducer, initialState } from '../../store/reducers/partyReducer';
 
+
 const PartyList = (props) => {
     const [formModal, setFormModal] = useState(false)
     const [state, dispatch] = useReducer(partyReducer, initialState);
