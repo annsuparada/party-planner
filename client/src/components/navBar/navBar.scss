@@ -6,7 +6,7 @@
     position: fixed;
     z-index: 1;
     width: 100%;
-    background-color:  red;
+    background-color: white;
     height: 64px;
     -webkit-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
@@ -17,12 +17,12 @@
         color: blue;
     }
     a:hover{
-        color: white;
+        color: red;
         text-decoration: underline;
         
     }
     .active {
-        color: white;
+        color: red;
         text-decoration: underline;
     }
 

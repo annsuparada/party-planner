@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getPartyById, addTask, deleteTask } from '../../store/actions';
+import { getPartyById, addTask, deleteTask, toggleCompleted } from '../../store/actions';
 import { Form, Select, Input, Button, Row, Col, Popconfirm, message } from 'antd';
 import {CloseSquareOutlined} from '@ant-design/icons';
 import './todoForm.scss'
 
 const TodoForm = (props) => {
-    const [state, setSate] = useState({
-        task: '',
-    })
-
+    const [state, setSate] = useState({task: ''})
+    
     useEffect(() => {
         props.getPartyById(props.partyId)
     }, [])
@@ -43,8 +41,14 @@ const TodoForm = (props) => {
         message.success(`Task was deleted!`);
     }
 
-    return (
+    const toggleCompleted = (taskId, completed) => {
+        console.log(completed)
+        props.toggleCompleted(taskId, {completed: completed})
+    }
+
+    return ( 
         <div className='list-box'>
+            {console.log(props.task)}
             <h2>To-do List</h2>
             <Form>
             <Row type="flex" justify="space-around">
@@ -75,9 +79,16 @@ const TodoForm = (props) => {
                 </Col>
             </Row>
             </Form>
+
             {/* =====================todo list======================== */}
             {props.task && props.task.map(task => (
+                <div 
+                key={task.id} 
+                className={task.completed ? "completed" : "notCompleted"}
+                onClick = {() => toggleCompleted(task.id, !task.completed)}
+                >
                 <Row key={task.id}>
+                {console.log(task.completed)}
                     <Col span={20}><p>{task.task}</p></Col>
                     <Col span={4}>
                     <Popconfirm
@@ -85,13 +96,12 @@ const TodoForm = (props) => {
                             onConfirm={() => deleteTask(task.id)}
                             okText="Yes"
                             cancelText="No"
-                        >
-                        {/* <Icon type="close-square" style={{fontSize: 25}}/> */}
+                    >
                         <CloseSquareOutlined />
-                        </Popconfirm>
+                    </Popconfirm>
                     </Col>
                 </Row>
-                
+                </div>
             ))}
         </div>);
 }
@@ -106,6 +116,6 @@ const mapStateToProps = state => ({
 export default withRouter(
     connect(
         mapStateToProps,
-        { getPartyById, addTask, deleteTask }
+        { getPartyById, addTask, deleteTask, toggleCompleted }
     )(TodoForm)
 )

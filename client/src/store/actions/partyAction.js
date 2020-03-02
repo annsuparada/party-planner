@@ -9,7 +9,7 @@ export const getParties = (id) => dispatch => {
         return axiosWithAuth()
             // .get(`https://mypartyplanner.herokuapp.com/api/categories/${id}/party`)
             .get(`http://localhost:8000/api/parties`)
-            .then(response => {
+            .then(response => { 
                 dispatch({ 
                     type: FETCH_PARTY_SUCCESS,
                     payload: response.data

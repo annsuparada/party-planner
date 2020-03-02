@@ -44,6 +44,7 @@ const ShoppingListForm = (props) => {
 
     return (
         <div className='list-box'>
+            {/* {console.log('item', props.item)} */}
             <h2>Shopping List</h2>
             <Form>
                 <Row type="flex" justify="space-around">
@@ -93,7 +94,7 @@ const ShoppingListForm = (props) => {
                 </Row>
             </Form>
             {/* =====================shopping list======================== */}
-            {props.item && props.item.map(item => (
+            {props.item && props.item.map(item => ( 
                 <Row key={item.id}>
                     <Col span={9}><p>{item.item}</p></Col>
                     <Col span={1}><div></div></Col>

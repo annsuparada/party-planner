@@ -47,3 +47,17 @@ export const deleteItem = id => dispatch => {
             })
         })
 }
+
+
+export const TOGGLE_PURCHASED = "TOGGLE_PURCHASED"
+
+export const toggleCompleted = id => dispatch => {
+    return axiosWithAuth()
+        .get(`http://localhost:8000/api/parties/task/${id}`)
+        .then(response => { console.log(response)
+            dispatch({
+                type: TOGGLE_PURCHASED,
+                payload: id
+            })
+        })
+}

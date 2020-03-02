@@ -37,13 +37,27 @@ export const deleteTask = id => dispatch => {
         .then(response => { 
             dispatch({
                 type: DELETE_TASK_SUCCESS,
-                payload: id
+                payload: response.data
             })
         })
         .catch(error => {
             dispatch({
             type: DELETE_TASK_FAILURE,
             payload: error
+            })
+        })
+}
+
+
+export const TOGGLE_COMPLETED = "TOGGLE_COMPLETED"
+
+export const toggleCompleted = (id, state) => dispatch => {
+    return axiosWithAuth()
+        .put(`http://localhost:8000/api/parties/task/${id}`, state)
+        .then(response => { console.log(response)
+            dispatch({
+                type: TOGGLE_COMPLETED,
+                payload: id
             })
         })
 }

@@ -53,6 +53,9 @@ export {
     DELETE_TASK_START,
     DELETE_TASK_SUCCESS,
     DELETE_TASK_FAILURE,
+
+    toggleCompleted, 
+    TOGGLE_COMPLETED
 } from './todoAction'
 
 export {

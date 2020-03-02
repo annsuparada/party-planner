@@ -7,6 +7,8 @@ import {
     DELETE_TASK_START,
     DELETE_TASK_SUCCESS,
     DELETE_TASK_FAILURE,
+
+    TOGGLE_COMPLETED
 } from '../actions/index';
 
 
@@ -63,6 +65,15 @@ export const todoReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload,
+            }
+        case TOGGLE_COMPLETED:
+            return { 
+                ...state,
+                task: state.task.map(todo =>
+                    todo.id === action.payload ?
+                        { ...todo, completed: !todo.completed}
+                        : todo 
+                )
             }
         default:
             return state
