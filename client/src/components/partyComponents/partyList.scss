@@ -3,7 +3,10 @@
 
 .party-list-container{
     text-align: center;
-
+    h1{
+      margin-top: 2%;
+    }
+  
     .parties-wrap{
         display: flex;
         flex-wrap: wrap;
@@ -11,12 +14,16 @@
 
         .add-icon{
             font-size: 7rem;
-            margin: 0px;
+            margin-bottom: 0px;
         }
         .parties-box{
-            border: 1px solid black;
+            border: 1px solid rgb(170, 170, 170);
+            background-color: $main-light;
+            border-radius: 5px;
+            padding: 2%;
             width: 25%;
             margin: 10px 10px;
+           
           }
           .parties-box:hover{
             box-shadow: 5px 10px 8px #888888;

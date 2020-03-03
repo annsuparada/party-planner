@@ -1,7 +1,21 @@
 @import '../../styles/variable';
 
-.back-btn{
-    // margin-left: 20%;
+.back-btn:hover{
+    cursor: pointer;
+}
+.party-card{
+    background-color: #37a4f1;
+    padding: 2% 12% ;
+    margin: 35px auto;
+    width: 95%;
+
+    p {
+        font-weight: bold;
+        color: $white;
+    }
+    h2 {
+        color: $white;
+    }
 }
 .party-container{
     width: 80%;
@@ -17,17 +31,32 @@
     .list-wrapper{
         display: flex;
         justify-content: space-evenly;
-        margin-top: 15px;
+        padding-top: 2%;
         
 
         .list-box{
             border: 1px solid rgb(170, 170, 170);
-            // background-color: red;
+            background-color: $main-light;
             width: 40%;
             padding: 15px;
             box-shadow: 5px 10px 8px #888888;
             border-radius: 5px;
             min-height: 80vh;
+
+            h3{
+                text-align: center;
+                color: $main-dark;
+            }
+            h4 {
+                color: $main-dark;
+            }
+            h6 {
+                margin-top: 25px;
+                color: $main-dark;
+            }
+            span{
+                color: $main-dark;
+            }
           
         }
     }

@@ -5,6 +5,7 @@ import { getParties, getPartyById, deleteParty } from '../../store/actions';
 import TodoForm from '../todoComponents/TodoForm';
 import ShoppingListForm from '../shoppingListComponents/ShoppingListForm';
 import { Row, Col, Button, Spin, Popconfirm, message } from 'antd';
+import { CaretLeftOutlined } from '@ant-design/icons';
 import './party.scss'
 
 
@@ -31,28 +32,34 @@ const Party = props => {
 
     return (
         <>
+            <div className="party-card">
+                <div className='back-btn' onClick={goBacktoParties}>
+                    <p><CaretLeftOutlined />Back</p>
+                </div>
+                <h2>{props.partyById.party_name}</h2>
+                <Row type="flex" justify="start">
+                    <Col span={4}><p>Date: {props.partyById.date}</p></Col>
+                    <Col span={4}><p>Guests: {props.partyById.guests}</p></Col>
+                    <Col span={4}><p>Theme: {props.partyById.theme}</p></Col>
+                    <Col span={4}><p>Budget: ${props.partyById.budget}</p></Col>
+
+                    <Col span={4}>
+                        <Popconfirm
+                            title="Are you sure delete this party?"
+                            onConfirm={confirm}
+                            okText="Yes"
+                            cancelText="No"
+                        >
+                            <Button>Delete Party</Button>
+                        </Popconfirm>
+                    </Col>
+                </Row>
+            </div>
             <div className="party-container">
-                <button className='back-btn' onClick={goBacktoParties}>Back</button>
+
                 <div className='party-wrapper'>
                     {props.isLoading && <div><Spin size="large" style={{ display: 'flex', justifyContent: 'center' }} />{props.isLoading}</div>}
-                    <h2>{props.partyById.party_name}</h2>
-                    <Row type="flex" justify="start">
-                        <Col span={4}><p>Date: {props.partyById.date}</p></Col>
-                        <Col span={4}><p>Guests: {props.partyById.guests}</p></Col>
-                        <Col span={4}><p>Theme: {props.partyById.theme}</p></Col>
-                        <Col span={4}><p>Budget: ${props.partyById.budget}</p></Col>
 
-                        <Col span={4}>
-                            <Popconfirm
-                                title="Are you sure delete this party?"
-                                onConfirm={confirm}
-                                okText="Yes"
-                                cancelText="No"
-                            >
-                                <Button type="danger" >Delete Party</Button>
-                            </Popconfirm>
-                        </Col>
-                    </Row>
                     <div className='list-wrapper'>
                         <ShoppingListForm shoppingListId={shoppingListId} partyId={partyId} />
                         <TodoForm todoListId={todoListId} partyId={partyId} />

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addItem, deleteItem, togglePurchased } from '../../store/actions';
-import { Form, Input, Button, Row, Col, Popconfirm, message } from 'antd';
+import { Form, Input, Button, Row, Col, Popconfirm, message, Checkbox } from 'antd';
 import './shoppingListForm.scss';
 
 import { CloseSquareOutlined } from '@ant-design/icons';
@@ -48,7 +48,7 @@ const ShoppingListForm = (props) => {
     }
     return (
         <div className='list-box'>
-            <h2>Shopping List</h2>
+            <h3>SHOPPING LIST</h3>
             <Form>
                 <Row type="flex" justify="space-around">
                     <Col span={10}>
@@ -99,19 +99,17 @@ const ShoppingListForm = (props) => {
             {/* =====================shopping list======================== */}
             {props.items && props.items.map(item => (
 
-                <Row key={item.id}>
-                        <Col span={9}>
-                            <p
+                <Row justify="space-between" key={item.id}>
+                    <Col span={13}>
+                        <Checkbox checked={item.purchased}
                             className={item.purchased ? "purchased" : "notPurchased"}
                             onClick={() => togglePurchased(item.id, !item.purchased)}
-                            >
-                                {item.item}
-                            </p>
-                        </Col>
-                        <Col span={1}><div></div></Col>
-                        <Col span={9}><p>{item.price}</p></Col>
-                        <Col span={1}><div></div></Col>
-                    <Col span={4}>
+                        >
+                            {item.item}
+                        </Checkbox>
+                    </Col>
+                    <Col span={2}><p>$ {item.price}</p></Col>
+                    <Col span={1}>
                         <Popconfirm
                             title="Are you sure delete this item?"
                             onConfirm={() => deleteItem(item.id)}
@@ -124,9 +122,17 @@ const ShoppingListForm = (props) => {
                 </Row>
 
             ))}
-            <p>Purchased $ {sumPurchased(props.items)}</p>
-            <p>Total $ {sumTotal(props.items)}</p>
-            
+            <Row justify="space-between">
+                <Col span={12}><h6>Purchased  </h6></Col>
+                <Col span={7}><h6> $ {sumPurchased(props.items)}</h6></Col>
+            </Row>
+            {/* <h6>Purchased $ {sumPurchased(props.items)}</h6> */}
+            <Row justify="space-between">
+                <Col span={12}><h4>Total </h4></Col>
+                <Col span={7}><h4>$  {sumTotal(props.items)}</h4></Col>
+            </Row>
+
+
         </div>
     );
 }

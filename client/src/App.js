@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom";
-// import PrivateRoute from './utilities/PrivateRoute'
+import PrivateRoute from './utilities/PrivateRoute'
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Home from './pages/Home'
@@ -16,9 +16,9 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/login" component={LoginPage} />
-        <Route path="/party/:id" component={PartyPage} />
-        <Route path="/parties" component={PartyListPage} />
-        <Route path="/test" component={TestPage} />
+        <PrivateRoute path="/party/:id" component={PartyPage} />
+        <PrivateRoute path="/parties" component={PartyListPage} />
+        <PrivateRoute path="/test" component={TestPage} />
       
 
       </Switch>

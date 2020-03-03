@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { login } from "../../store/actions/index";
-import { Spin, Form, Input, Button, Alert } from 'antd';
-
+import { Spin, Form, Input, Button, Alert, Row, Col } from 'antd';
 const LoginForm = props => {
     const [input, setInput] = useState({
         username: "",
@@ -39,10 +38,13 @@ const LoginForm = props => {
         wrapperCol: { offset: 5, span: 4 },
     };
     return (
-        <>
+        <div className="form-container">
+            <Link to='/'><h1>PARTY PLANNER</h1></Link>
+            <Row justify="space-around" align="middle">
+            <Col span={10}>
             <Spin tip="Loading" spinning={props.isLoading}>
                 <Form {...layout} className="form">
-                    <h3>Login</h3>
+                    <h3>LOGIN</h3>
                     <Form.Item
                         label="Username"
                         name="username"
@@ -88,7 +90,9 @@ const LoginForm = props => {
                     <p>Don't have an account? <Link to='/register'>Sign Up</Link></p>
                 </Form>
             </Spin>
-        </>
+            </Col>
+            </Row>
+        </div>
     )
 }
 

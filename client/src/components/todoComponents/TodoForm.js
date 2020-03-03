@@ -2,20 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getPartyById, addTask, deleteTask, toggleCompleted } from '../../store/actions';
-import { Form, Select, Input, Button, Row, Col, Popconfirm, message } from 'antd';
-import {CloseSquareOutlined} from '@ant-design/icons';
+import { Form, Select, Input, Button, Row, Col, Popconfirm, message, Checkbox } from 'antd';
+import { CloseSquareOutlined } from '@ant-design/icons';
 import './todoForm.scss'
 
 const TodoForm = (props) => {
-    const [state, setSate] = useState({task: ''})
-    
+    const [state, setSate] = useState({ task: '' })
+
     useEffect(() => {
         props.getPartyById(props.partyId)
     }, [])
 
     const validateForm = () => {
         let valid = true
-        if (state.task.length === 0){
+        if (state.task.length === 0) {
             valid = false
         }
         return valid
@@ -43,63 +43,68 @@ const TodoForm = (props) => {
 
     const toggleCompleted = (taskId, completed) => {
         console.log(completed)
-        props.toggleCompleted(taskId, {completed: completed})
+        props.toggleCompleted(taskId, { completed: completed })
     }
 
-    return ( 
+    return (
         <div className='list-box'>
-            <h2>To-do List</h2>
+            <h3>TO-DO LIST</h3>
             <Form>
-            <Row type="flex" justify="space-around">
-                <Col span={20}>
-                    <Form.Item
-                    name="task"
-                    rules={[
-                        {
-                          required: true,
-                          message: 'Task is required!',
-                        },
-                      ]}
-                    >
-                    <Input
-                        type="text"
-                        name="task"
-                        value={state.task}
-                        onChange={handleChange}
-                        placeholder="Task"
-                        size="small"
-                    />
-                    </Form.Item>
-                </Col>
-                <Col span={4}>
-                    <Form.Item>
-                    <Button type="primary" htmlType="submit"  onClick={handleSubmit}>add</Button>
-                    </Form.Item>
-                </Col>
-            </Row>
+                <Row type="flex" justify="space-around">
+                    <Col span={20}>
+                        <Form.Item
+                            name="task"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Task is required!',
+                                },
+                            ]}
+                        >
+                            <Input
+                                type="text"
+                                name="task"
+                                value={state.task}
+                                onChange={handleChange}
+                                placeholder="Task"
+                                size="small"
+                            />
+                        </Form.Item>
+                    </Col>
+                    <Col span={4}>
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit" onClick={handleSubmit}>add</Button>
+                        </Form.Item>
+                    </Col>
+                </Row>
             </Form>
 
             {/* =====================todo list======================== */}
             {props.task && props.task.map(task => (
-                <div 
-                key={task.id} 
-                className={task.completed ? "completed" : "notCompleted"}
-                onClick = {() => toggleCompleted(task.id, !task.completed)}
-                >
+
                 <Row key={task.id}>
-                    <Col span={20}><p>{task.task}</p></Col>
+                    <Col span={20}>
+                        <Checkbox
+                            key={task.id}
+                            className={task.completed ? "completed" : "notCompleted"}
+                            onClick={() => toggleCompleted(task.id, !task.completed)}
+                        >
+                            {task.task}
+                        </Checkbox >
+
+                    </Col>
                     <Col span={4}>
-                    <Popconfirm
+                        <Popconfirm
                             title="Are you sure delete this task?"
                             onConfirm={() => deleteTask(task.id)}
                             okText="Yes"
                             cancelText="No"
-                    >
-                        <CloseSquareOutlined />
-                    </Popconfirm>
+                        >
+                            <CloseSquareOutlined />
+                        </Popconfirm>
                     </Col>
                 </Row>
-                </div>
+
             ))}
         </div>);
 }

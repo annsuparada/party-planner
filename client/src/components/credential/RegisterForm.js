@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { register } from "../../store/actions/index";
-import { Spin, Form, Input, Button, Alert } from 'antd';
+import { Spin, Form, Input, Button, Alert, Row, Col } from 'antd';
 import './form.scss'
 const RegisterForm = props => {
 
@@ -62,58 +62,63 @@ const RegisterForm = props => {
   };
 
   return (
-    <>
-    <Spin tip="Loading" spinning={props.isLoading}>
-      <Form {...layout} className="form">
 
-        <h3>Register Form</h3>
+    <div className="form-container">
+      <Link to='/'><h1>PARTY PLANNER</h1></Link>
+      <Row justify="space-around" align="middle">
+        <Col span={10}>
+        <Spin tip="Loading" spinning={props.isLoading}>
+          <Form {...layout} className="form">
 
-        <Form.Item
-          label="Username"
-          name="username"
-          validateStatus={newUsername.validateStatus}
-          help={newUsername.errorMsg}
-        >
-          <Input
-            placeholder="Username"
-            type="text"
-            name="username"
-            value={newUsername.username}
-            onChange={handleInputChange}
-          />
-          {props.error && <Alert message={props.error} type="error" closable="true"/>}
-        </Form.Item>
-        <Form.Item
-          label="Password"
-          name="password"
-          validateStatus={newPassword.validateStatus}
-          help={newPassword.errorMsg}
-        >
-          <Input
-            placeholder="Password"
-            type="password"
-            name="password"
-            value={newPassword.password}
-            onChange={handleInputPassword}
-          />
-        </Form.Item>
+            <h3>SIGN UP</h3>
 
-        <Form.Item {...tailLayout}>
-          <Button
-            type="primary"
-            htmlType="submit"
-            onClick={handleSubmit}
-            className="submit-btn"
-          >
-            Submit
+            <Form.Item
+              label="Username"
+              name="username"
+              validateStatus={newUsername.validateStatus}
+              help={newUsername.errorMsg}
+            >
+              <Input
+                placeholder="Username"
+                type="text"
+                name="username"
+                value={newUsername.username}
+                onChange={handleInputChange}
+              />
+              {props.error && <Alert message={props.error} type="error" closable="true" />}
+            </Form.Item>
+            <Form.Item
+              label="Password"
+              name="password"
+              validateStatus={newPassword.validateStatus}
+              help={newPassword.errorMsg}
+            >
+              <Input
+                placeholder="Password"
+                type="password"
+                name="password"
+                value={newPassword.password}
+                onChange={handleInputPassword}
+              />
+            </Form.Item>
+
+            <Form.Item {...tailLayout}>
+              <Button
+                type="primary"
+                htmlType="submit"
+                onClick={handleSubmit}
+                className="submit-btn"
+              >
+                Submit
           </Button>
-        </Form.Item>
-        <p>Already had an account? <Link to='/login'>Login</Link></p>
+            </Form.Item>
+            <p>Already had an account? <Link to='/login'>Login</Link></p>
 
-      </Form>
-      </Spin>
-
-    </>
+          </Form>
+        </Spin>
+      </Col>
+      </Row>
+      </div>
   )
 }
 

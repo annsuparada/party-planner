@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+@import './variable';
 html {
 	font-size: 62.5%;
 }
@@ -8,7 +9,9 @@ body {
 	button:focus {
 		outline: none;
 	}
-	padding-top: 100px;
+	padding-top: 64px;
+	background-color: $white;
+	// background-color: $background-color;
 }
 
 a {
@@ -26,6 +29,7 @@ i {
 p {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 1.5rem;
+	color: $main-dark;
 }
 
 b {
@@ -36,36 +40,42 @@ h1 {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: bold;
 	font-size: 4.8rem;
+	color: $main-dark;
 }
 
 h2 {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: bold;
 	font-size: 4rem;
+	color: $main-dark;
 }
 
 h3 {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: bold;
 	font-size: 3.6rem;
+	color: $main-dark;
 }
 
 h4 {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: bold;
 	font-size: 2.4rem;
+	color: $main-dark;
 }
 
 h5 {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: bold;
 	font-size: 2rem;
+	color: $main-dark;
 }
 
 h6 {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 1.8rem;
 	font-weight: 500;
+	color: $main-dark;
 }
 
 input {
@@ -76,6 +86,7 @@ input {
 	height: 35px;
 	border-radius: 5px;
 	border: none;
+	color: $main-dark;
 }
 
 textarea {
@@ -114,4 +125,20 @@ hr {
 
 .dropdown {
 	font-size: 12px;
+}
+
+.ant-btn{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+span{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.ant-form-item-label > label{
+	color: $main-dark;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+.ant-modal-title{
+	color: $main-dark;
+	font-family: 'Noto Sans KR', sans-serif;
 }
