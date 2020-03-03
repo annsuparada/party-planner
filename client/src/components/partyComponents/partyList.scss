@@ -5,12 +5,17 @@
     text-align: center;
     h1{
       margin-top: 2%;
+      @media #{$tablet} {
+        font-size: 3rem;
+        margin-top: 3%;
+     }
     }
   
     .parties-wrap{
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+      
 
         .add-icon{
             font-size: 7rem;
@@ -23,6 +28,12 @@
             padding: 2%;
             width: 25%;
             margin: 10px 10px;
+            @media #{$tablet} {
+              width: 45%;
+           }
+           @media #{$mobile-small} {
+            width: 70%;
+         }
            
           }
           .parties-box:hover{

@@ -83,14 +83,8 @@
             input{
                 width: 95%;
             }
-            .ant-row-space-around{
-                @media #{$mobile-small} {
-                    // flex-direction: column;;
-                 }
-            }
             .form{
                 display: flex;
-                // flex-wrap: wrap;
             }
           
         }
