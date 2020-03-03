@@ -34,7 +34,7 @@ export const deleteItem = id => dispatch => {
     return axiosWithAuth()
         .delete(`http://localhost:8000/api/parties/shopping-list/${id}`)
 
-        .then(response => { 
+        .then(response => { console.log(response)
             dispatch({
                 type: DELETE_ITEM_SUCCESS,
                 payload: id
@@ -51,10 +51,10 @@ export const deleteItem = id => dispatch => {
 
 export const TOGGLE_PURCHASED = "TOGGLE_PURCHASED"
 
-export const toggleCompleted = id => dispatch => {
+export const togglePurchased = (id, state )=> dispatch => {
     return axiosWithAuth()
-        .get(`http://localhost:8000/api/parties/task/${id}`)
-        .then(response => { console.log(response)
+        .put(`http://localhost:8000/api/parties/shopping-list/${id}`, state)
+        .then(response => { 
             dispatch({
                 type: TOGGLE_PURCHASED,
                 payload: id

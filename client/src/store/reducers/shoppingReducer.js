@@ -7,18 +7,24 @@ import {
     DELETE_ITEM_START,
     DELETE_ITEM_SUCCESS,
     DELETE_ITEM_FAILURE,
+    TOGGLE_PURCHASED,
 } from '../actions/index';
 
 
 export const initialState = {
-    item: [],
+    items: [],
     isLoading: false,
     error: [],
     totalPrice: null,
+    itemDeleted: null,
+    totalPurchased: null
 }
 
 function sum(total, num) {
     return total + num;
+}
+function subtract(total, num) {
+    return total - num;
 }
 
 export const shoppingReducer = (state = initialState, action) => {
@@ -34,7 +40,7 @@ export const shoppingReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                item: [action.payload, ...state.item],
+                items: [action.payload, ...state.items],
                 totalPrice: sum(state.totalPrice, action.payload.price),
                 error: null
             }
@@ -47,7 +53,7 @@ export const shoppingReducer = (state = initialState, action) => {
         case FETCH_ITEM_SUCCESS:
             return {
                 ...state,
-                item: action.payload,
+                items: action.payload,
             }
         case SUM_PRICE:
             return {
@@ -58,20 +64,31 @@ export const shoppingReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: true,
-                error: null
+                error: null,
+                itemDeleted: action.payload
             }
         case DELETE_ITEM_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                item: state.item.filter(e => e.id !== action.payload),
-                error: null
+                items: state.items.filter(e => e.id !== action.payload),
+                error: null,
             }
         case DELETE_ITEM_FAILURE:
             return {
                 ...state,
                 isLoading: false,
                 error: action.payload,
+            }
+        case TOGGLE_PURCHASED:
+            return {
+                ...state,
+                items: state.items.map(item =>
+                    item.id === action.payload ?
+                        { ...item, purchased: !item.purchased }
+                        : item
+                    ),
+                
             }
         default:
             return state

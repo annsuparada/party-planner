@@ -57,7 +57,18 @@ export const FETCH_PARTYBYID_SUCCESS = "FETCH_PARTYBYID_SUCCESS"
 export const FETCH_TODO_SUCCESS = "FETCH_TODO_SUCCESS"
 export const FETCH_ITEM_SUCCESS = "FETCH_ITEM_SUCCESS"
 export const SUM_PRICE = "SUM_PRICE"
+export const SUM_PURCHASED = "SUM_PURCHASED"
 export const FETCH_PARTYBYID_FAILURE = "FETCH_PARTYBYID_FAILURE"
+
+
+const sumPurchased = (items) => {
+    console.log('sum',items)
+    const purchasedItem = items.filter(item => item.purchased)
+    const result = purchasedItem.reduce((accumulator, shoppingItem) => {
+        return accumulator + shoppingItem.price;
+    }, 0);
+    return result;
+}
 
 export const getPartyById = (id) => dispatch => {
     dispatch({ type: FETCH_PARTYBYID_START })
@@ -80,8 +91,8 @@ export const getPartyById = (id) => dispatch => {
                 dispatch({ 
                     type: SUM_PRICE,
                     payload: response.data.shopping_list.map(price => (
-                        price.price
-                    )).reduce((prev, next) => prev + next)
+                         price.price
+                )).reduce((prev, next) => prev + next)
                 })
                 
             })

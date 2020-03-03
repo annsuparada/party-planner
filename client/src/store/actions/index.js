@@ -68,5 +68,8 @@ export {
     DELETE_ITEM_START,
     DELETE_ITEM_SUCCESS,
     DELETE_ITEM_FAILURE,
+
+    togglePurchased,
+    TOGGLE_PURCHASED
 } from './shoppingAction'
 

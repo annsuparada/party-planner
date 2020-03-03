@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { addItem, deleteItem } from '../../store/actions';
+import { addItem, deleteItem, togglePurchased } from '../../store/actions';
 import { Form, Input, Button, Row, Col, Popconfirm, message } from 'antd';
 import './shoppingListForm.scss';
 
@@ -22,7 +22,7 @@ const ShoppingListForm = (props) => {
         return valid
     }
     const handleSubmit = e => {
-        if (validateForm()){
+        if (validateForm()) {
             props.addItem(state)
         } else {
             console.log('Invalid form')
@@ -42,21 +42,25 @@ const ShoppingListForm = (props) => {
         message.success(`Item was deleted!`);
     }
 
+    const togglePurchased = (itemId, purchased) => {
+        console.log('purchased', purchased)
+        props.togglePurchased(itemId, { purchased: purchased })
+    }
+    const price = props.itemDeleted
     return (
         <div className='list-box'>
-            {/* {console.log('item', props.item)} */}
             <h2>Shopping List</h2>
             <Form>
                 <Row type="flex" justify="space-around">
                     <Col span={10}>
                         <Form.Item
-                        name="item"
-                        rules={[
-                          {
-                            required: true,
-                            message: 'Item is required!',
-                          },
-                        ]}
+                            name="item"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Item is required!',
+                                },
+                            ]}
                         >
                             <Input
                                 type="text"
@@ -69,13 +73,13 @@ const ShoppingListForm = (props) => {
                     </Col>
                     <Col span={10}>
                         <Form.Item
-                         name="price"
-                         rules={[
-                           {
-                             required: true,
-                             message: 'Price must be interger',
-                           },
-                         ]}
+                            name="price"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Price must be interger',
+                                },
+                            ]}
                         >
                             <Input
                                 type="number"
@@ -94,12 +98,26 @@ const ShoppingListForm = (props) => {
                 </Row>
             </Form>
             {/* =====================shopping list======================== */}
-            {props.item && props.item.map(item => ( 
+            {props.items && props.items.map(item => (
+
                 <Row key={item.id}>
-                    <Col span={9}><p>{item.item}</p></Col>
-                    <Col span={1}><div></div></Col>
-                    <Col span={9}><p>{item.price}</p></Col>
-                    <Col span={1}><div></div></Col>
+                    {/* <div
+                        key={item.id}
+                        className={item.purchased ? "purchased" : "notPurchased"}
+                        onClick={() => togglePurchased(item.id, !item.purchased)}
+                    > */}
+                        <Col span={9}>
+                            <p
+                            className={item.purchased ? "purchased" : "notPurchased"}
+                            onClick={() => togglePurchased(item.id, !item.purchased)}
+                            >
+                                {item.item}
+                            </p>
+                        </Col>
+                        <Col span={1}><div></div></Col>
+                        <Col span={9}><p>{item.price}</p></Col>
+                        <Col span={1}><div></div></Col>
+                    {/* </div> */}
                     <Col span={4}>
                         <Popconfirm
                             title="Are you sure delete this item?"
@@ -111,22 +129,37 @@ const ShoppingListForm = (props) => {
                         </Popconfirm>
                     </Col>
                 </Row>
+
             ))}
-            <p>Total $ {props.totalPrice || 0}</p>
+            <p>Purchased $ {sumPurchased(props.items)}</p>
+            <p>Total $ {sumTotal(props.items)}</p>
+            
         </div>
     );
 }
 
+const sumTotal = (items) => {
+    return items.reduce((acc, curr) => {
+        return acc + curr.price;
+    }, 0);
+};
+
+const sumPurchased = (items) => {
+    return items.filter(item => item.purchased).reduce((acc, curr) => {
+        return acc + curr.price;
+    }, 0);
+};
+
 const mapStateToProps = state => ({
     isLoading: state.shoppingReducer.isLoading,
-    item: state.shoppingReducer.item,
+    items: state.shoppingReducer.items,
     totalPrice: state.shoppingReducer.totalPrice,
-    error: state.shoppingReducer.error
+    error: state.shoppingReducer.error,
 })
 
 export default withRouter(
     connect(
         mapStateToProps,
-        { addItem, deleteItem }
+        { addItem, deleteItem, togglePurchased }
     )(ShoppingListForm)
 )
