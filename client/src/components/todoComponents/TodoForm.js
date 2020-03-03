@@ -48,7 +48,6 @@ const TodoForm = (props) => {
 
     return ( 
         <div className='list-box'>
-            {console.log(props.task)}
             <h2>To-do List</h2>
             <Form>
             <Row type="flex" justify="space-around">
@@ -88,7 +87,6 @@ const TodoForm = (props) => {
                 onClick = {() => toggleCompleted(task.id, !task.completed)}
                 >
                 <Row key={task.id}>
-                {console.log(task.completed)}
                     <Col span={20}><p>{task.task}</p></Col>
                     <Col span={4}>
                     <Popconfirm

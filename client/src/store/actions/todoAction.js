@@ -54,7 +54,7 @@ export const TOGGLE_COMPLETED = "TOGGLE_COMPLETED"
 export const toggleCompleted = (id, state) => dispatch => {
     return axiosWithAuth()
         .put(`http://localhost:8000/api/parties/task/${id}`, state)
-        .then(response => { console.log(response)
+        .then(response => { 
             dispatch({
                 type: TOGGLE_COMPLETED,
                 payload: id

@@ -46,7 +46,6 @@ const ShoppingListForm = (props) => {
         console.log('purchased', purchased)
         props.togglePurchased(itemId, { purchased: purchased })
     }
-    const price = props.itemDeleted
     return (
         <div className='list-box'>
             <h2>Shopping List</h2>
@@ -101,11 +100,6 @@ const ShoppingListForm = (props) => {
             {props.items && props.items.map(item => (
 
                 <Row key={item.id}>
-                    {/* <div
-                        key={item.id}
-                        className={item.purchased ? "purchased" : "notPurchased"}
-                        onClick={() => togglePurchased(item.id, !item.purchased)}
-                    > */}
                         <Col span={9}>
                             <p
                             className={item.purchased ? "purchased" : "notPurchased"}
@@ -117,7 +111,6 @@ const ShoppingListForm = (props) => {
                         <Col span={1}><div></div></Col>
                         <Col span={9}><p>{item.price}</p></Col>
                         <Col span={1}><div></div></Col>
-                    {/* </div> */}
                     <Col span={4}>
                         <Popconfirm
                             title="Are you sure delete this item?"
