@@ -16,6 +16,11 @@
     h2 {
         color: $white;
     }
+    .delail{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
 }
 .party-container{
     width: 80%;
@@ -32,7 +37,10 @@
         display: flex;
         justify-content: space-evenly;
         padding-top: 2%;
-        
+        @media #{$tablet-big} {
+            flex-direction: column;
+            align-items: center;
+         }
 
         .list-box{
             border: 1px solid rgb(170, 170, 170);
@@ -42,20 +50,47 @@
             box-shadow: 5px 10px 8px #888888;
             border-radius: 5px;
             min-height: 80vh;
+            @media #{$tablet-big} {
+                width: 80%;
+                margin-bottom: 35px;
+                min-height: 50vh;
+             }
+             @media #{$mobile} {
+                width: 90%;
+             }
 
             h3{
                 text-align: center;
                 color: $main-dark;
+                @media #{$mobile} {
+                    font-size: 2.5rem;
+                 }
             }
             h4 {
-                color: $main-dark;
+                @media #{$mobile-small} {
+                    font-size: 1.8rem;
+                 }
             }
             h6 {
                 margin-top: 25px;
-                color: $main-dark;
+                @media #{$mobile-small} {
+                    font-size: 1.5rem;
+                 }
             }
             span{
                 color: $main-dark;
+            }
+            input{
+                width: 95%;
+            }
+            .ant-row-space-around{
+                @media #{$mobile-small} {
+                    // flex-direction: column;;
+                 }
+            }
+            .form{
+                display: flex;
+                // flex-wrap: wrap;
             }
           
         }

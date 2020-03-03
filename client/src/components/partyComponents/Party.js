@@ -37,13 +37,13 @@ const Party = props => {
                     <p><CaretLeftOutlined />Back</p>
                 </div>
                 <h2>{props.partyById.party_name}</h2>
-                <Row type="flex" justify="start">
-                    <Col span={4}><p>Date: {props.partyById.date}</p></Col>
-                    <Col span={4}><p>Guests: {props.partyById.guests}</p></Col>
-                    <Col span={4}><p>Theme: {props.partyById.theme}</p></Col>
-                    <Col span={4}><p>Budget: ${props.partyById.budget}</p></Col>
+                <div className='delail'>
+                    <p>Date: {props.partyById.date}</p>
+                    <p>Guests: {props.partyById.guests}</p>
+                    <p>Theme: {props.partyById.theme}</p>
+                    <p>Budget: ${props.partyById.budget}</p>
 
-                    <Col span={4}>
+                    
                         <Popconfirm
                             title="Are you sure delete this party?"
                             onConfirm={confirm}
@@ -52,8 +52,8 @@ const Party = props => {
                         >
                             <Button>Delete Party</Button>
                         </Popconfirm>
-                    </Col>
-                </Row>
+                    
+                </div>
             </div>
             <div className="party-container">
 

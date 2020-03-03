@@ -50,8 +50,7 @@ const ShoppingListForm = (props) => {
         <div className='list-box'>
             <h3>SHOPPING LIST</h3>
             <Form>
-                <Row type="flex" justify="space-around">
-                    <Col span={10}>
+                <div className="form">
                         <Form.Item
                             name="item"
                             rules={[
@@ -69,8 +68,6 @@ const ShoppingListForm = (props) => {
                                 placeholder="Item"
                             />
                         </Form.Item>
-                    </Col>
-                    <Col span={10}>
                         <Form.Item
                             name="price"
                             rules={[
@@ -88,13 +85,10 @@ const ShoppingListForm = (props) => {
                                 placeholder="Price"
                             />
                         </Form.Item>
-                    </Col>
-                    <Col span={4}>
                         <Form.Item>
                             <Button type="primary" htmlType="submit" onClick={handleSubmit}>add</Button>
                         </Form.Item>
-                    </Col>
-                </Row>
+                </div>
             </Form>
             {/* =====================shopping list======================== */}
             {props.items && props.items.map(item => (
@@ -108,7 +102,7 @@ const ShoppingListForm = (props) => {
                             {item.item}
                         </Checkbox>
                     </Col>
-                    <Col span={2}><p>$ {item.price}</p></Col>
+                    <Col span={5}><p>$ {item.price}</p></Col>
                     <Col span={1}>
                         <Popconfirm
                             title="Are you sure delete this item?"
@@ -124,12 +118,12 @@ const ShoppingListForm = (props) => {
             ))}
             <Row justify="space-between">
                 <Col span={12}><h6>Purchased  </h6></Col>
-                <Col span={7}><h6> $ {sumPurchased(props.items)}</h6></Col>
+                <Col span={9}><h6> $ {sumPurchased(props.items)}</h6></Col>
             </Row>
             {/* <h6>Purchased $ {sumPurchased(props.items)}</h6> */}
             <Row justify="space-between">
                 <Col span={12}><h4>Total </h4></Col>
-                <Col span={7}><h4>$  {sumTotal(props.items)}</h4></Col>
+                <Col span={9}><h4>$  {sumTotal(props.items)}</h4></Col>
             </Row>
 
 

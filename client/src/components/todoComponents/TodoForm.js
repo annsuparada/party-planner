@@ -50,8 +50,7 @@ const TodoForm = (props) => {
         <div className='list-box'>
             <h3>TO-DO LIST</h3>
             <Form>
-                <Row type="flex" justify="space-around">
-                    <Col span={20}>
+                <div className="form">
                         <Form.Item
                             name="task"
                             rules={[
@@ -70,13 +69,10 @@ const TodoForm = (props) => {
                                 size="small"
                             />
                         </Form.Item>
-                    </Col>
-                    <Col span={4}>
                         <Form.Item>
                             <Button type="primary" htmlType="submit" onClick={handleSubmit}>add</Button>
                         </Form.Item>
-                    </Col>
-                </Row>
+                </div>
             </Form>
 
             {/* =====================todo list======================== */}
