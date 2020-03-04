@@ -30,20 +30,12 @@ const LoginForm = props => {
         }
     }
 
-    const layout = {
-        labelCol: { span: 5 },
-        wrapperCol: { span: 15 },
-    };
-    const tailLayout = {
-        wrapperCol: { offset: 5, span: 4 },
-    };
     return (
         <div className="form-container">
             <Link to='/'><h1>PARTY PLANNER</h1></Link>
-            <Row justify="space-around" align="middle">
-            <Col span={10}>
+           
             <Spin tip="Loading" spinning={props.isLoading}>
-                <Form {...layout} className="form">
+                <Form layout='vertical' className="form">
                     <h3>LOGIN</h3>
                     <Form.Item
                         label="Username"
@@ -82,7 +74,7 @@ const LoginForm = props => {
                             onChange={inputHandler}
                         />
                     </Form.Item>
-                    <Form.Item {...tailLayout}>
+                    <Form.Item>
                         <Button type="primary" htmlType="submit" onClick={() => submitHandler()}>
                             Submit
                     </Button >
@@ -90,8 +82,7 @@ const LoginForm = props => {
                     <p>Don't have an account? <Link to='/register'>Sign Up</Link></p>
                 </Form>
             </Spin>
-            </Col>
-            </Row>
+            
         </div>
     )
 }

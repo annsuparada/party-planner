@@ -53,72 +53,59 @@ const RegisterForm = props => {
   const handleInputPassword = e => {
     setNewPassword({ ...validatePassword(e.target.value), "password": e.target.value })
   };
-  const layout = {
-    labelCol: { span: 5 },
-    wrapperCol: { span: 15 },
-  };
-  const tailLayout = {
-    wrapperCol: { offset: 5, span: 4 },
-  };
 
   return (
 
     <div className="form-container">
       <Link to='/'><h1>PARTY PLANNER</h1></Link>
-      <Row justify="space-around" align="middle">
-        <Col span={10}>
-        <Spin tip="Loading" spinning={props.isLoading}>
-          <Form {...layout} className="form">
-
-            <h3>SIGN UP</h3>
-
-            <Form.Item
-              label="Username"
+      <Spin tip="Loading" spinning={props.isLoading}>
+        <Form layout='vertical' className="form">
+          <h3>SIGN UP</h3>
+          <Form.Item
+            label="Username"
+            name="username"
+            validateStatus={newUsername.validateStatus}
+            help={newUsername.errorMsg}
+          >
+            <Input
+              placeholder="Username"
+              type="text"
               name="username"
-              validateStatus={newUsername.validateStatus}
-              help={newUsername.errorMsg}
-            >
-              <Input
-                placeholder="Username"
-                type="text"
-                name="username"
-                value={newUsername.username}
-                onChange={handleInputChange}
-              />
-              {props.error && <Alert message={props.error} type="error" closable="true" />}
-            </Form.Item>
-            <Form.Item
-              label="Password"
+              value={newUsername.username}
+              onChange={handleInputChange}
+            />
+            {props.error && <Alert message={props.error} type="error" closable="true" />}
+          </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            validateStatus={newPassword.validateStatus}
+            help={newPassword.errorMsg}
+          >
+            <Input
+              placeholder="Password"
+              type="password"
               name="password"
-              validateStatus={newPassword.validateStatus}
-              help={newPassword.errorMsg}
+              value={newPassword.password}
+              onChange={handleInputPassword}
+            />
+          </Form.Item>
+
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              onClick={handleSubmit}
+              className="submit-btn"
             >
-              <Input
-                placeholder="Password"
-                type="password"
-                name="password"
-                value={newPassword.password}
-                onChange={handleInputPassword}
-              />
-            </Form.Item>
-
-            <Form.Item {...tailLayout}>
-              <Button
-                type="primary"
-                htmlType="submit"
-                onClick={handleSubmit}
-                className="submit-btn"
-              >
-                Submit
+              Submit
           </Button>
-            </Form.Item>
-            <p>Already had an account? <Link to='/login'>Login</Link></p>
+          </Form.Item>
+          <p>Already had an account? <Link to='/login'>Login</Link></p>
 
-          </Form>
-        </Spin>
-      </Col>
-      </Row>
-      </div>
+        </Form>
+      </Spin>
+    </div>
   )
 }
 
