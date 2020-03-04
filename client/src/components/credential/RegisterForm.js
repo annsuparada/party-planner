@@ -8,9 +8,10 @@ const RegisterForm = props => {
 
   const [newUsername, setNewUsername] = useState({ username: "" });
   const [newPassword, setNewPassword] = useState({ password: "" })
-
+  const [confirmPass, setConfirmPass] = useState({ confirmPassword: "" })
 
   const validateUserName = (username) => {
+    
     if (username.length >= 3) {
       return {
         validateStatus: 'success',
@@ -37,8 +38,22 @@ const RegisterForm = props => {
     };
   }
 
+  const validateConfirm = (confirmPass) => {
+    
+    if (confirmPass === newPassword.password){
+      return {
+        validateStatus: 'success',
+        errorMsg: null,
+
+      };
+    }
+    return {
+      validateStatus: 'error',
+      errorMsg: 'The two passwords that you entered do not match!',
+    };
+  }
   const handleSubmit = event => {
-    if (validateUserName(event) && validatePassword(event)) {
+    if (validateUserName(event) && validatePassword(event) && validateConfirm(event)) {
       props.register(props.history, { username: newUsername.username, password: newPassword.password });
     } else {
       console.log("Invalid Form");
@@ -53,6 +68,10 @@ const RegisterForm = props => {
   const handleInputPassword = e => {
     setNewPassword({ ...validatePassword(e.target.value), "password": e.target.value })
   };
+  const handleConfirm = e => {
+    console.log(e.target.value)
+    setConfirmPass({ ...confirmPass, confirmPassword: e.target.value });
+  }
 
   return (
 
@@ -66,6 +85,12 @@ const RegisterForm = props => {
             name="username"
             validateStatus={newUsername.validateStatus}
             help={newUsername.errorMsg}
+            rules={[
+              {
+                  required: true,
+                  message: 'Username is required!',
+              },
+          ]}
           >
             <Input
               placeholder="Username"
@@ -81,8 +106,14 @@ const RegisterForm = props => {
             name="password"
             validateStatus={newPassword.validateStatus}
             help={newPassword.errorMsg}
+            rules={[
+              {
+                  required: true,
+                  message: 'Password is required!',
+              },
+          ]}
           >
-            <Input
+            <Input.Password
               placeholder="Password"
               type="password"
               name="password"
@@ -90,7 +121,26 @@ const RegisterForm = props => {
               onChange={handleInputPassword}
             />
           </Form.Item>
-
+          <Form.Item
+            label="Confirm Password"
+            name="confirmPassword"
+            validateStatus={confirmPass.validateConfirm}
+            help={confirmPass.errorMsg}
+            rules={[
+              {
+                  required: true,
+                  message: 'Confirm Password is required!',
+              },
+          ]}
+          >
+            <Input.Password
+              placeholder="Password"
+              type="password"
+              name="confirmPassword"
+              value={confirmPass.confirmPassword}
+              onChange={handleConfirm}
+            />
+          </Form.Item>
           <Form.Item>
             <Button
               type="primary"

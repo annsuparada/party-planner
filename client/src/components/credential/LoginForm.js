@@ -66,7 +66,7 @@ const LoginForm = props => {
                             },
                         ]}
                     >
-                        <Input
+                        <Input.Password
                             placeholder="Password"
                             type="password"
                             name="password"
