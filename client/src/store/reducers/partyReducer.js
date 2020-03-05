@@ -13,7 +13,6 @@ import {
     DELETE_PARTY_FAILURE,
 } from '../actions/index';
 
-
 export const initialState = {
     parties: [],
     isLoading: false,
@@ -26,6 +25,7 @@ export const initialState = {
         theme: '',
         date: '',
         budget: null,
+        user_id: null
     }
     
 }

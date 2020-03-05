@@ -17,7 +17,7 @@ function App() {
         <Route path="/register" component={RegisterPage} />
         <Route path="/login" component={LoginPage} />
         <PrivateRoute path="/party/:id" component={PartyPage} />
-        <PrivateRoute path="/parties" component={PartyListPage} />
+        <PrivateRoute path="/parties/user/:userId" component={PartyListPage} />
         <PrivateRoute path="/test" component={TestPage} />
       
 

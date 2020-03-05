@@ -7,7 +7,7 @@ export const REGISTER_FAILURE = "REGISTER_FAILURE";
 export const register = (history, credentials) => dispatch => {
     dispatch({ type: REGISTER_START });
     return axios 
-        .post("https://mypartyplanner.herokuapp.com/api/auth/register", credentials)
+        .post("http://localhost:8000/api/auth/register", credentials)
         .then(response => {
             console.log('register success', response)
             if(response)
@@ -30,12 +30,14 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const login = (history, credentials) => dispatch => {
     dispatch({ type: LOGIN_START });
     return axios
-        .post("https://mypartyplanner.herokuapp.com/api/auth/login", credentials)
+        .post("http://localhost:8000/api/auth/login", credentials)
         .then(response => {
-            console.log("login ssuccess", response)
+            console.log("login success", response)
             dispatch({ type: LOGIN_SUCCESS })
             localStorage.setItem("token", response.data.token)
-            history.push("/parties")
+            localStorage.setItem("user_id", response.data.user_id)
+            console.log(response.data.user_id)
+            history.push(`/parties/user/${response.data.user_id}`)
         })
         .catch(error => {
             console.log("login error", error)

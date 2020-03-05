@@ -11,6 +11,7 @@ import { partyReducer, initialState } from '../../store/reducers/partyReducer';
 const PartyList = (props) => {
     const [formModal, setFormModal] = useState(false)
     const [state, dispatch] = useReducer(partyReducer, initialState);
+    const userId = props.match.params.userId
 
     useEffect(() => {
         props.getParties();
@@ -33,6 +34,7 @@ const PartyList = (props) => {
 
     return (
         <div className='party-list-container'>
+            {console.log('party list', userId)}
             <h1>YOURS PARTIES</h1>
             {props.isLoading && <div><Spin size="large" />{props.isLoading}</div>}
             <Modal
@@ -41,9 +43,7 @@ const PartyList = (props) => {
                 okText="Add"
                 onCancel={handleCancelForm}
                 footer={null}
-                
                 >
-                {props.isLoading && <div><Spin size="large"  style={{ display: 'flex', justifyContent: 'center' }} />{props.isLoading}</div>}
                 <PartyForm dispatch={dispatch}
                      setFormModal={setFormModal}
                     {...state}

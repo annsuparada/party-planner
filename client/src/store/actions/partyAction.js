@@ -4,16 +4,19 @@ export const FETCH_PARTY_START = "FETCH_PARTY_START"
 export const FETCH_PARTY_SUCCESS = "FETCH_PARTY_SUCCESS"
 export const FETCH_PARTY_FAILURE = "FETCH_PARTY_FAILURE"
 
-export const getParties = (id) => dispatch => {
+
+export const getParties = (userId) => dispatch => {
+    let userId = localStorage.getItem("user_id");
     dispatch({ type: FETCH_PARTY_START })
         return axiosWithAuth()
             // .get(`https://mypartyplanner.herokuapp.com/api/categories/${id}/party`)
-            .get(`http://localhost:8000/api/parties`)
+            .get(`http://localhost:8000/api/parties/user/${userId}`)
             .then(response => { 
                 dispatch({ 
                     type: FETCH_PARTY_SUCCESS,
                     payload: response.data
                 })
+               
                 
             })
             .catch(error => {
@@ -57,20 +60,11 @@ export const FETCH_PARTYBYID_SUCCESS = "FETCH_PARTYBYID_SUCCESS"
 export const FETCH_TODO_SUCCESS = "FETCH_TODO_SUCCESS"
 export const FETCH_ITEM_SUCCESS = "FETCH_ITEM_SUCCESS"
 export const SUM_PRICE = "SUM_PRICE"
-export const SUM_PURCHASED = "SUM_PURCHASED"
 export const FETCH_PARTYBYID_FAILURE = "FETCH_PARTYBYID_FAILURE"
-
-
-const sumPurchased = (items) => {
-    console.log('sum',items)
-    const purchasedItem = items.filter(item => item.purchased)
-    const result = purchasedItem.reduce((accumulator, shoppingItem) => {
-        return accumulator + shoppingItem.price;
-    }, 0);
-    return result;
-}
+export const GET_USER_ID = "GET_USER_ID"
 
 export const getPartyById = (id) => dispatch => {
+    let userId = localStorage.getItem("user_id");
     dispatch({ type: FETCH_PARTYBYID_START })
         return axiosWithAuth()
             // .get(`https://mypartyplanner.herokuapp.com/api/parties/${id} `)
@@ -93,6 +87,10 @@ export const getPartyById = (id) => dispatch => {
                     payload: response.data.shopping_list.map(price => (
                          price.price
                 )).reduce((prev, next) => prev + next)
+                })
+                dispatch({ 
+                    type: GET_USER_ID,
+                    payload: userId
                 })
                 
             })
