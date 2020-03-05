@@ -22,6 +22,7 @@ const TodoForm = (props) => {
     }
     const handleSubmit = e => {
         if (validateForm()) {
+            // console.log('add task btn')
             props.addTask(state)
         } else {
             console.log('Invalid Form')
@@ -42,12 +43,12 @@ const TodoForm = (props) => {
     }
 
     const toggleCompleted = (taskId, completed) => {
-        console.log(completed)
         props.toggleCompleted(taskId, { completed: completed })
     }
 
     return (
         <div className='list-box'>
+            {console.log('--', state)}
             <h3>TO-DO LIST</h3>
             <Form>
                 <div className="form">
@@ -77,10 +78,9 @@ const TodoForm = (props) => {
 
             {/* =====================todo list======================== */}
             {props.task && props.task.map(task => (
-
                 <Row key={task.id}>
                     <Col span={20}>
-                        <Checkbox
+                        <Checkbox checked={task.completed}
                             key={task.id}
                             className={task.completed ? "completed" : "notCompleted"}
                             onClick={() => toggleCompleted(task.id, !task.completed)}

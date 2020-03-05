@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useForm} from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addItem, deleteItem, togglePurchased } from '../../store/actions';
@@ -12,6 +12,7 @@ const ShoppingListForm = (props) => {
         item: '',
         price: null
     })
+    const [form] = Form.useForm()
     const validateForm = () => {
         let valid = true
         if (state.item.length === 0) {
@@ -21,9 +22,14 @@ const ShoppingListForm = (props) => {
         }
         return valid
     }
+    const defaultForm = {item: '', price: null}
+    const resetForm = () => {
+        form.resetFields();
+    }
     const handleSubmit = e => {
         if (validateForm()) {
             props.addItem(state)
+            // form.resetFields();
         } else {
             console.log('Invalid form')
         }
@@ -36,6 +42,7 @@ const ShoppingListForm = (props) => {
             shopping_list_id: props.shoppingListId
         })
     }
+   
 
     const deleteItem = (itemId) => {
         props.deleteItem(itemId)
@@ -43,13 +50,12 @@ const ShoppingListForm = (props) => {
     }
 
     const togglePurchased = (itemId, purchased) => {
-        console.log('purchased', purchased)
         props.togglePurchased(itemId, { purchased: purchased })
     }
     return (
         <div className='list-box'>
             <h3>SHOPPING LIST</h3>
-            <Form>
+            <Form form={form}>
                 <div className="form">
                         <Form.Item
                             name="item"

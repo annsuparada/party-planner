@@ -10,7 +10,7 @@ import 'antd/dist/antd.css';
 import './styles/global.scss'
 import App from './App';
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(reducer, applyMiddleware(thunk,logger));
 
 ReactDOM.render(
     <Provider store={store} >

@@ -23,9 +23,6 @@ export const initialState = {
 function sum(total, num) {
     return total + num;
 }
-function subtract(total, num) {
-    return total - num;
-}
 
 export const shoppingReducer = (state = initialState, action) => {
     switch (action.type) {

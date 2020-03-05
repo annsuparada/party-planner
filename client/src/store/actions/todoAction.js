@@ -7,10 +7,8 @@ export const ADD_TASK_FAILURE = "ADD_TASK_FAILURE"
 export const addTask = state => dispatch => {
     dispatch({ type: ADD_TASK_START })
     return axiosWithAuth()
-        // .post("https://myTODOplanner.herokuapp.com/api/parties", state)
         .post("https://mypartyplanner.herokuapp.com/api/parties/todo-task/new", state)
-
-        .then(response => { console.log(response)
+        .then(response => { console.log('add todo',response)
             dispatch({
                 type: ADD_TASK_SUCCESS,
                 payload: response.data

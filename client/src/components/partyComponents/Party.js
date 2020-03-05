@@ -33,7 +33,6 @@ const Party = props => {
     return (
         <>
             <div className="party-card">
-                {console.log('userId', props.userId)}
                 <div className='back-btn' onClick={goBacktoParties}>
                     <p><CaretLeftOutlined />Back</p>
                 </div>

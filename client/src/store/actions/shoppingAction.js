@@ -7,9 +7,7 @@ export const ADD_ITEM_FAILURE = "ADD_ITEM_FAILURE"
 export const addItem = state => dispatch => {
     dispatch({ type: ADD_ITEM_START })
     return axiosWithAuth()
-        // .post("https://myTODOplanner.herokuapp.com/api/parties", state)
         .post("https://mypartyplanner.herokuapp.com/api/parties/shopping-item/new", state)
-
         .then(response => { console.log(response)
             dispatch({
                 type: ADD_ITEM_SUCCESS,
