@@ -37,7 +37,7 @@ export const deleteTask = id => dispatch => {
         .then(response => { 
             dispatch({
                 type: DELETE_TASK_SUCCESS,
-                payload: response.data
+                payload: id
             })
         })
         .catch(error => {

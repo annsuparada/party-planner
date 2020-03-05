@@ -3,7 +3,7 @@ import HomeNavBar from '../components/navBar/HomeNavBar';
 import { Carousel, Button } from 'antd';
 import party1 from '../styles/img/party-1.jpg'
 import party2 from '../styles/img/party-2.jpg'
-import party3 from '../styles/img/party-3.jpg'
+import party3 from '../styles/img/party-3.jpeg'
 import party4 from '../styles/img/party-4.jpeg'
 import './home.scss'
 const Home = props => {

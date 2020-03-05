@@ -34,7 +34,6 @@ const PartyList = (props) => {
 
     return (
         <div className='party-list-container'>
-            {console.log('party list', userId)}
             <h1>YOURS PARTIES</h1>
             {props.isLoading && <div><Spin size="large" />{props.isLoading}</div>}
             <Modal
