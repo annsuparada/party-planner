@@ -10,7 +10,7 @@ export const getParties = (userId) => dispatch => {
     dispatch({ type: FETCH_PARTY_START })
         return axiosWithAuth()
             // .get(`https://mypartyplanner.herokuapp.com/api/categories/${id}/party`)
-            .get(`http://localhost:8000/api/parties/user/${userId}`)
+            .get(`https://mypartyplanner.herokuapp.com/api/parties/user/${userId}`)
             .then(response => { 
                 dispatch({ 
                     type: FETCH_PARTY_SUCCESS,
@@ -38,7 +38,7 @@ export const addParty = (history, state) => dispatch => {
     dispatch({ type: ADD_PARTY_START })
     return axiosWithAuth()
         // .post("https://mypartyplanner.herokuapp.com/api/parties", state)
-        .post("http://localhost:8000/api/parties", state)
+        .post("https://mypartyplanner.herokuapp.com/api/parties", state)
 
         .then(response => {
             dispatch({
@@ -68,7 +68,7 @@ export const getPartyById = (id) => dispatch => {
     dispatch({ type: FETCH_PARTYBYID_START })
         return axiosWithAuth()
             // .get(`https://mypartyplanner.herokuapp.com/api/parties/${id} `)
-            .get(`http://localhost:8000/api/parties/${id} `)
+            .get(`https://mypartyplanner.herokuapp.com/api/parties/${id} `)
             .then(response => { 
                 dispatch({ 
                     type: GET_USER_ID,
@@ -110,7 +110,7 @@ export const DELETE_PARTY_FAILURE = "DELETE_PARTY_FAILURE"
 export const deleteParty = id => dispatch => {
     dispatch({ type: DELETE_PARTY_START })
     return axiosWithAuth()
-        .delete(`http://localhost:8000/api/parties/${id}`)
+        .delete(`https://mypartyplanner.herokuapp.com/api/parties/${id}`)
 
         .then(response => {
             dispatch({

@@ -8,7 +8,7 @@ export const addItem = state => dispatch => {
     dispatch({ type: ADD_ITEM_START })
     return axiosWithAuth()
         // .post("https://myTODOplanner.herokuapp.com/api/parties", state)
-        .post("http://localhost:8000/api/parties/shopping-item/new", state)
+        .post("https://mypartyplanner.herokuapp.com/api/parties/shopping-item/new", state)
 
         .then(response => { console.log(response)
             dispatch({
@@ -32,7 +32,7 @@ export const DELETE_ITEM_FAILURE = "DELETE_ITEM_FAILURE"
 export const deleteItem = id => dispatch => {
     dispatch({ type: DELETE_ITEM_START })
     return axiosWithAuth()
-        .delete(`http://localhost:8000/api/parties/shopping-list/${id}`)
+        .delete(`https://mypartyplanner.herokuapp.com/api/parties/shopping-list/${id}`)
 
         .then(response => { console.log(response)
             dispatch({
@@ -53,7 +53,7 @@ export const TOGGLE_PURCHASED = "TOGGLE_PURCHASED"
 
 export const togglePurchased = (id, state )=> dispatch => {
     return axiosWithAuth()
-        .put(`http://localhost:8000/api/parties/shopping-list/${id}`, state)
+        .put(`https://mypartyplanner.herokuapp.com/api/parties/shopping-list/${id}`, state)
         .then(response => { 
             dispatch({
                 type: TOGGLE_PURCHASED,

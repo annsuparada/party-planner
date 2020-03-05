@@ -8,7 +8,7 @@ export const addTask = state => dispatch => {
     dispatch({ type: ADD_TASK_START })
     return axiosWithAuth()
         // .post("https://myTODOplanner.herokuapp.com/api/parties", state)
-        .post("http://localhost:8000/api/parties/todo-task/new", state)
+        .post("https://mypartyplanner.herokuapp.com/api/parties/todo-task/new", state)
 
         .then(response => { console.log(response)
             dispatch({
@@ -32,7 +32,7 @@ export const DELETE_TASK_FAILURE = "DELETE_TASK_FAILURE"
 export const deleteTask = id => dispatch => {
     dispatch({ type: DELETE_TASK_START })
     return axiosWithAuth()
-        .delete(`http://localhost:8000/api/parties/task/${id}`)
+        .delete(`https://mypartyplanner.herokuapp.com/api/parties/task/${id}`)
 
         .then(response => { 
             dispatch({
@@ -53,7 +53,7 @@ export const TOGGLE_COMPLETED = "TOGGLE_COMPLETED"
 
 export const toggleCompleted = (id, state) => dispatch => {
     return axiosWithAuth()
-        .put(`http://localhost:8000/api/parties/task/${id}`, state)
+        .put(`https://mypartyplanner.herokuapp.com/api/parties/task/${id}`, state)
         .then(response => { 
             dispatch({
                 type: TOGGLE_COMPLETED,
