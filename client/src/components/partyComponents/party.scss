@@ -4,17 +4,13 @@
     cursor: pointer;
 }
 .party-card{
-    background-color: #37a4f1;
+    background-color: $background-color;
     padding: 2% 12% ;
     margin: 35px auto;
     width: 95%;
 
     p {
         font-weight: bold;
-        color: $white;
-    }
-    h2 {
-        color: $white;
     }
     .delail{
         display: flex;
@@ -85,6 +81,7 @@
             }
             .form{
                 display: flex;
+                justify-content: center;
             }
           
         }
