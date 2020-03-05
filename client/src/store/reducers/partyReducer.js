@@ -11,6 +11,7 @@ import {
     DELETE_PARTY_START,
     DELETE_PARTY_SUCCESS,
     DELETE_PARTY_FAILURE,
+    GET_USER_ID,
 } from '../actions/index';
 
 export const initialState = {
@@ -26,8 +27,9 @@ export const initialState = {
         date: '',
         budget: null,
         user_id: null
-    }
-    
+    },
+    userId: null,
+
 }
 
 
@@ -114,7 +116,12 @@ export const partyReducer = (state = initialState, action) => {
         case 'UPDATE_FORM':
             return {
                 ...state,
-                party: {...state.party, ...action.payload},
+                party: { ...state.party, ...action.payload },
+            }
+        case GET_USER_ID:
+            return {
+                ...state,
+                userId: action.payload,
             }
         default:
             return state

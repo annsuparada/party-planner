@@ -71,9 +71,13 @@ export const getPartyById = (id) => dispatch => {
             .get(`http://localhost:8000/api/parties/${id} `)
             .then(response => { 
                 dispatch({ 
+                    type: GET_USER_ID,
+                    payload: userId
+                })
+                dispatch({ 
                     type: FETCH_PARTYBYID_SUCCESS,
                     payload: response.data
-                });
+                })
                 dispatch({
                     type: FETCH_TODO_SUCCESS,
                     payload: response.data.todo_list
@@ -88,10 +92,7 @@ export const getPartyById = (id) => dispatch => {
                          price.price
                 )).reduce((prev, next) => prev + next)
                 })
-                dispatch({ 
-                    type: GET_USER_ID,
-                    payload: userId
-                })
+                
                 
             })
             .catch(error => {

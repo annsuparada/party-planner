@@ -25,7 +25,7 @@ const Party = props => {
 
     const confirm = (e) => {
         props.deleteParty(partyId)
-        props.history.push('/parties')
+        props.history.push(`/parties/user/${props.userId}`)
         message.success(`${props.partyById.party_name} was deleted!`);
     }
 
@@ -33,6 +33,7 @@ const Party = props => {
     return (
         <>
             <div className="party-card">
+                {console.log('userId', props.userId)}
                 <div className='back-btn' onClick={goBacktoParties}>
                     <p><CaretLeftOutlined />Back</p>
                 </div>
@@ -77,6 +78,7 @@ const mapStateToProps = state => ({
     deleteSuccess: state.partyReducer.deleteSuccess,
     item: state.shoppingReducer.item,
     totalPrice: state.shoppingReducer.totalPrice,
+    userId: state.partyReducer.userId,
 })
 
 export default withRouter(
