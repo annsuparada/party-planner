@@ -115,7 +115,7 @@ export const deleteParty = id => dispatch => {
         .then(response => {
             dispatch({
                 type: DELETE_PARTY_SUCCESS,
-                payload: response.data
+                payload: id
             })
         })
         .catch(error => {

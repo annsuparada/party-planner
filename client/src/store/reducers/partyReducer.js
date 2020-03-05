@@ -104,7 +104,7 @@ export const partyReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                deleteSuccess: action.payload,
+                parties: state.parties.filter(e => e.id !== action.payload),
                 error: null
             }
         case DELETE_PARTY_FAILURE:
