@@ -2,6 +2,10 @@
 
 .back-btn:hover{
     cursor: pointer;
+    
+    p{
+        color: $white;
+    }
 }
 .party-card{
     background-color: $background-color;

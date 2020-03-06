@@ -59,7 +59,7 @@ const RegisterForm = props => {
   return (
 
     <div className="form-container">
-      <Link to='/'><h1>PARTY PLANNER</h1></Link>
+      <h1><Link to='/'>PARTY PLANNER</Link></h1>
       <Spin tip="Loading" spinning={props.isLoading}>
         <Form layout='vertical' className="form">
           <h3>SIGN UP</h3>

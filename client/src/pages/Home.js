@@ -18,16 +18,16 @@ const Home = props => {
                 <div className="left">
                     <Carousel autoplay>
                         <div>
-                            <img src={party1} />
+                            <img src={party1} alt="Outdoor Party"/>
                         </div>
                         <div>
-                            <img src={party2} />
+                            <img src={party2} alt="Concert Party" />
                         </div>
                         <div>
-                            <img src={party3} />
+                            <img src={party3} alt="Indoor Party"/>
                         </div>
                         <div>
-                            <img src={party4} />
+                            <img src={party4} alt="Wedding Party"/>
                         </div>
                     </Carousel>
                 </div>
