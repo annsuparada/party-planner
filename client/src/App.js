@@ -6,7 +6,6 @@ import RegisterPage from './pages/RegisterPage';
 import Home from './pages/Home'
 import PartyListPage from './pages/PartyListPage'
 import PartyPage from './pages/PartyPage';
-import TestPage from './components/partyComponents/TestPage';
 import './App.css';
 
 function App() {
@@ -18,9 +17,6 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <PrivateRoute path="/party/:id" component={PartyPage} />
         <PrivateRoute path="/parties/user/:userId" component={PartyListPage} />
-        <PrivateRoute path="/test" component={TestPage} />
-      
-
       </Switch>
     </div>
   );
