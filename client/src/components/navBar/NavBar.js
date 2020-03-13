@@ -8,13 +8,12 @@ import './navBar.scss'
 
 
 const NavBar = (props) => {
-    let token = localStorage.getItem('token');
 
     const logout = (event) => {
         event.preventDefault();
         props.logout();
         props.history.push('/login');
-        localStorage.clear();
+        sessionStorage.clear();
       }
 
     return (

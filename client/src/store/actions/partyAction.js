@@ -6,10 +6,9 @@ export const FETCH_PARTY_FAILURE = "FETCH_PARTY_FAILURE"
 
 
 export const getParties = (userId) => dispatch => {
-    let userId = localStorage.getItem("user_id");
+    let userId = sessionStorage.getItem("user_id");
     dispatch({ type: FETCH_PARTY_START })
         return axiosWithAuth()
-            // .get(`https://mypartyplanner.herokuapp.com/api/categories/${id}/party`)
             .get(`https://mypartyplanner.herokuapp.com/api/parties/user/${userId}`)
             .then(response => { 
                 dispatch({ 
@@ -37,7 +36,6 @@ export const ADD_PARTY_FAILURE = "ADD_PARTY_FAILURE"
 export const addParty = (history, state) => dispatch => {
     dispatch({ type: ADD_PARTY_START })
     return axiosWithAuth()
-        // .post("https://mypartyplanner.herokuapp.com/api/parties", state)
         .post("https://mypartyplanner.herokuapp.com/api/parties", state)
 
         .then(response => {
@@ -64,10 +62,9 @@ export const FETCH_PARTYBYID_FAILURE = "FETCH_PARTYBYID_FAILURE"
 export const GET_USER_ID = "GET_USER_ID"
 
 export const getPartyById = (id) => dispatch => {
-    let userId = localStorage.getItem("user_id");
+    let userId = sessionStorage.getItem("user_id");
     dispatch({ type: FETCH_PARTYBYID_START })
         return axiosWithAuth()
-            // .get(`https://mypartyplanner.herokuapp.com/api/parties/${id} `)
             .get(`https://mypartyplanner.herokuapp.com/api/parties/${id} `)
             .then(response => { 
                 dispatch({ 

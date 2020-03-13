@@ -34,8 +34,8 @@ export const login = (history, credentials) => dispatch => {
         .then(response => {
             console.log("login success", response)
             dispatch({ type: LOGIN_SUCCESS })
-            localStorage.setItem("token", response.data.token)
-            localStorage.setItem("user_id", response.data.user_id)
+            sessionStorage.setItem("token", response.data.token)
+            sessionStorage.setItem("user_id", response.data.user_id)
             console.log(response.data.user_id)
             history.push(`/parties/user/${response.data.user_id}`)
         })
