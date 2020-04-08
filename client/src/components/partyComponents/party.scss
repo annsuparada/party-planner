@@ -69,7 +69,6 @@
                  }
             }
             h6 {
-                margin-top: 25px;
                 @media #{$mobile-small} {
                     font-size: 1.5rem;
                  }
@@ -80,10 +79,7 @@
             input{
                 width: 95%;
             }
-            .form{
-                // display: flex;
-                // justify-content: center;
-            }
+         
           
         }
     }

@@ -1,4 +1,4 @@
-import React, { useState, useForm} from 'react';
+import React, { useState, useForm } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addItem, deleteItem, togglePurchased } from '../../store/actions';
@@ -22,7 +22,7 @@ const ShoppingListForm = (props) => {
         }
         return valid
     }
-    const defaultForm = {item: '', price: null}
+    const defaultForm = { item: '', price: null }
     const resetForm = () => {
         form.resetFields();
     }
@@ -42,7 +42,7 @@ const ShoppingListForm = (props) => {
             shopping_list_id: props.shoppingListId
         })
     }
-   
+
 
     const deleteItem = (itemId) => {
         props.deleteItem(itemId)
@@ -59,54 +59,55 @@ const ShoppingListForm = (props) => {
                 <div className="form">
                     <Row>
                         <Col span={11}>
-                        <Form.Item
-                            name="item"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Item is required!',
-                                },
-                            ]}
-                        >
-                            <Input
-                                type="text"
+                            <Form.Item
                                 name="item"
-                                value={state.item}
-                                onChange={handleChange}
-                                placeholder="Item"
-                            />
-                        </Form.Item>
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Item is required!',
+                                    },
+                                ]}
+                            >
+                                <Input
+                                    type="text"
+                                    name="item"
+                                    value={state.item}
+                                    onChange={handleChange}
+                                    placeholder="Item"
+                                />
+                            </Form.Item>
                         </Col>
                         <Col span={10}>
-                        <Form.Item
-                            name="price"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Price must be interger',
-                                },
-                            ]}
-                        >
-                            <Input
-                                type="number"
+                            <Form.Item
                                 name="price"
-                                value={state.price}
-                                onChange={handleChange}
-                                placeholder="Price"
-                            />
-                        </Form.Item>
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Price must be interger',
+                                    },
+                                ]}
+                            >
+                                <Input
+                                    type="number"
+                                    name="price"
+                                    value={state.price}
+                                    onChange={handleChange}
+                                    placeholder="Price"
+                                />
+                            </Form.Item>
                         </Col>
                         <Col span={3}>
-                        <Form.Item>
-                            <Button type="primary" htmlType="submit" onClick={handleSubmit}>add</Button>
-                        </Form.Item>
+                            <Form.Item>
+                                <Button type="primary" htmlType="submit" onClick={handleSubmit}>add</Button>
+                            </Form.Item>
                         </Col>
-                        </Row>
+                    </Row>
                 </div>
             </Form>
-            {/* =====================shopping list======================== */}
-            {props.items && props.items.map(item => (
 
+            {/* =====================shopping list======================== */}
+
+            {props.items && props.items.map(item => (
                 <Row justify="space-between" key={item.id}>
                     <Col span={13}>
                         <Checkbox checked={item.purchased}
@@ -130,16 +131,20 @@ const ShoppingListForm = (props) => {
                 </Row>
 
             ))}
-            <Row justify="space-between">
-                <Col span={12}><h6>Purchased  </h6></Col>
-                <Col span={9}><h6> $ {sumPurchased(props.items)}</h6></Col>
-            </Row>
-            {/* <h6>Purchased $ {sumPurchased(props.items)}</h6> */}
-            <Row justify="space-between">
-                <Col span={12}><h4>Total </h4></Col>
-                <Col span={9}><h4>$  {sumTotal(props.items)}</h4></Col>
-            </Row>
-
+            <div style={{marginTop: "25px"}}>
+                <Row justify="space-between">
+                    <Col span={12}><h6>Purchased</h6></Col>
+                    <Col span={9}><h6> $ {sumPurchased(props.items)}</h6></Col>
+                </Row>
+                <Row justify="space-between">
+                    <Col span={12}><h6>Total left</h6></Col>
+                    <Col span={9}><h6> $ {subtractPurchased(sumTotal(props.items), sumPurchased(props.items))}</h6></Col>
+                </Row>
+                <Row justify="space-between">
+                    <Col span={12}><h4>Total budget </h4></Col>
+                    <Col span={9}><h4>$  {sumTotal(props.items)}</h4></Col>
+                </Row>
+            </div>
 
         </div>
     );
@@ -155,6 +160,10 @@ const sumPurchased = (items) => {
     return items.filter(item => item.purchased).reduce((acc, curr) => {
         return acc + curr.price;
     }, 0);
+};
+
+const subtractPurchased = (total, items) => {
+    return total - items
 };
 
 const mapStateToProps = state => ({
