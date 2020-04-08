@@ -55,8 +55,10 @@ const ShoppingListForm = (props) => {
     return (
         <div className='list-box'>
             <h3>SHOPPING LIST</h3>
-            <Form form={form}>
+            <Form >
                 <div className="form">
+                    <Row>
+                        <Col span={11}>
                         <Form.Item
                             name="item"
                             rules={[
@@ -74,6 +76,8 @@ const ShoppingListForm = (props) => {
                                 placeholder="Item"
                             />
                         </Form.Item>
+                        </Col>
+                        <Col span={10}>
                         <Form.Item
                             name="price"
                             rules={[
@@ -91,9 +95,13 @@ const ShoppingListForm = (props) => {
                                 placeholder="Price"
                             />
                         </Form.Item>
+                        </Col>
+                        <Col span={3}>
                         <Form.Item>
                             <Button type="primary" htmlType="submit" onClick={handleSubmit}>add</Button>
                         </Form.Item>
+                        </Col>
+                        </Row>
                 </div>
             </Form>
             {/* =====================shopping list======================== */}

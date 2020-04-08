@@ -48,10 +48,11 @@ const TodoForm = (props) => {
 
     return (
         <div className='list-box'>
-            {console.log('--', state)}
             <h3>TO-DO LIST</h3>
             <Form>
                 <div className="form">
+                    <Row>
+                        <Col span={19}>
                         <Form.Item
                             name="task"
                             rules={[
@@ -70,9 +71,13 @@ const TodoForm = (props) => {
                                 size="small"
                             />
                         </Form.Item>
+                        </Col>
+                        <Col span={5} >
                         <Form.Item>
                             <Button type="primary" htmlType="submit" onClick={handleSubmit}>add</Button>
                         </Form.Item>
+                        </Col>
+                        </Row>
                 </div>
             </Form>
 

@@ -8,10 +8,10 @@
     }
 }
 .party-card{
-    background-color: $background-color;
-    padding: 2% 12% ;
-    margin: 35px auto;
-    width: 95%;
+        background-color: $background-color;
+        padding: 2% 12% ;
+        margin: 35px auto;
+        width: 95%;
 
     p {
         font-weight: bold;
@@ -24,13 +24,10 @@
 }
 .party-container{
     width: 80%;
-    // border: 1px solid black;
     margin: 20px auto;
 
     .party-wrapper{
-        // border: 1px solid black;
         margin-top: 15px;
-        // padding: 4%;
     }
 
     .list-wrapper{
@@ -84,8 +81,8 @@
                 width: 95%;
             }
             .form{
-                display: flex;
-                justify-content: center;
+                // display: flex;
+                // justify-content: center;
             }
           
         }
