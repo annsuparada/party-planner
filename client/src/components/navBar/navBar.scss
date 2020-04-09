@@ -1,8 +1,6 @@
 @import '../../styles//variable';
 
-.nav {
-    display: flex;
-    justify-content: flex-end;
+.nav-container{
     position: fixed;
     z-index: 1;
     width: 100%;
@@ -11,23 +9,37 @@
     -webkit-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
     top: 0;
-    a {
-        padding: 1.5rem;
-        font-size: 18px;
-        color: $main-dark;
-        font-weight: bold;
-    }
-    a:hover{
-        color: $white;
-        text-decoration: underline;
-        
-    }
-    .active {
-        color: $white;
-        text-decoration: underline;
-    }
 
-    // @media #{$mobile-small} {
-    //     justify-content: center;
-    //  }
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 1200px;
+        margin: 0 auto;
+
+        .nav-item {
+
+            img {
+                width: 60px;
+            }
+            a {
+                padding: 1.5rem;
+                font-size: 18px;
+                color: $main-dark;
+                font-weight: bold;
+                margin-top: 5px;
+                
+            }
+            a:hover {
+                color: $white;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+            .active {
+                color: $white;
+                text-decoration: underline;
+            }
+
+        }
+    }
 }

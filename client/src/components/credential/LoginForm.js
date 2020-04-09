@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { login } from "../../store/actions/index";
 import { Spin, Form, Input, Button, Alert, Row, Col } from 'antd';
+import logo from '../../styles/img/logo-party-planner.png';
+
 const LoginForm = props => {
     const [input, setInput] = useState({
         username: "",
@@ -32,8 +34,10 @@ const LoginForm = props => {
 
     return (
         <div className="form-container">
-            <h1><Link to='/'>PARTY PLANNER</Link></h1>
-           
+            <Link to="/">
+                <img src={logo} alt="logo party planner" />
+            </Link>
+
             <Spin tip="Loading" spinning={props.isLoading}>
                 <Form layout='vertical' className="form">
                     <h3>LOGIN</h3>
@@ -82,7 +86,7 @@ const LoginForm = props => {
                     <p>Don't have an account? <Link to='/register'>Sign Up</Link></p>
                 </Form>
             </Spin>
-            
+
         </div>
     )
 }

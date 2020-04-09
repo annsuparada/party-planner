@@ -4,13 +4,15 @@ import { withRouter, Link } from "react-router-dom";
 import { register } from "../../store/actions/index";
 import { Spin, Form, Input, Button, Alert, Row, Col } from 'antd';
 import './form.scss'
+import logo from '../../styles/img/logo-party-planner.png';
+
 const RegisterForm = props => {
 
   const [newUsername, setNewUsername] = useState({ username: "" });
   const [newPassword, setNewPassword] = useState({ password: "" })
 
   const validateUserName = (username) => {
-    
+
     if (username.length >= 3) {
       return {
         validateStatus: 'success',
@@ -37,8 +39,8 @@ const RegisterForm = props => {
     };
   }
 
- 
- 
+
+
   const handleSubmit = event => {
     if (newUsername.username.length >= 3 && newPassword.password.length >= 6) {
       props.register(props.history, { username: newUsername.username, password: newPassword.password });
@@ -59,7 +61,10 @@ const RegisterForm = props => {
   return (
 
     <div className="form-container">
-      <h1><Link to='/'>PARTY PLANNER</Link></h1>
+      <Link to="/">
+        <img src={logo} alt="logo party planner" />
+      </Link>
+ß
       <Spin tip="Loading" spinning={props.isLoading}>
         <Form layout='vertical' className="form">
           <h3>SIGN UP</h3>
@@ -70,9 +75,9 @@ const RegisterForm = props => {
             help={newUsername.errorMsg}
             rules={[
               {
-                  required: true,
+                required: true,
               },
-          ]}
+            ]}
           >
             <Input
               placeholder="Username"
@@ -90,9 +95,9 @@ const RegisterForm = props => {
             help={newPassword.errorMsg}
             rules={[
               {
-                  required: true,
+                required: true,
               },
-          ]}
+            ]}
           >
             <Input.Password
               placeholder="Password"
@@ -102,7 +107,7 @@ const RegisterForm = props => {
               onChange={handleInputPassword}
             />
           </Form.Item>
-    
+
           <Form.Item>
             <Button
               type="primary"
