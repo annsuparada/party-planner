@@ -31,7 +31,7 @@ const Party = props => {
 
 
     return (
-        <>
+        <div className="party-container">
             <div className="party-card">
                 <div className='back-btn' onClick={goBacktoParties}>
                     <p><CaretLeftOutlined />Back</p>
@@ -66,7 +66,7 @@ const Party = props => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
